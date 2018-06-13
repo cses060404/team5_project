@@ -14,4 +14,11 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+    @Test
+    public void isItemNull(String item) { assertNotEquals(item, null); }
+    @Test
+    public void isAmountNull(Integer amount) { assertNotEquals(amount,null); }
+    @Test
+    public void isRecipeNull(String recipe) { assertNotEquals(recipe, null); }
+    //CHANGE RECIPE DATA VALUE
 }
