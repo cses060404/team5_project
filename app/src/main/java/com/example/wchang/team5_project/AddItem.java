@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class addItem extends AppCompatActivity {
+public class AddItem extends AppCompatActivity {
 
     private TextView mTextMessage;
 

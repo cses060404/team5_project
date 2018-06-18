@@ -6,4 +6,10 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_add_recipe">Recipe</string>
     <string name="title_activity_shopping_list">Shopping</string>
+    <string name="title_activity_add_recipe">AddRecipe</string>
+    <string name="title_activity_shopping_list">ShoppingList</string>
+    <string name="foodName">Food Name</string>
+    <string name="quantity">Quantity</string>
+    <string name="unit">Unit</string>
+    <string name="enter_item">Enter Item</string>
 </resources>
