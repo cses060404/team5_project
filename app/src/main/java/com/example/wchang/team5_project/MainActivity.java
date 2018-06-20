@@ -2,6 +2,7 @@ package com.example.wchang.team5_project;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -9,28 +10,31 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selectedFragment = null;
+
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
+                    selectedFragment = new HomeFragment();
+                    break;
                 case R.id.navigation_item:
-                    mTextMessage.setText(R.string.title_activity_add_item);
-                    return true;
+                    selectedFragment = new ItemFragment();
+                    break;
                 case R.id.navigation_recipe:
-                    mTextMessage.setText(R.string.title_activity_add_recipe);
-                    return true;
+                    selectedFragment = new RecipeFragment();
+                    break;
                 case R.id.navigation_shopping:
-                    mTextMessage.setText(R.string.title_activity_shopping_list);
-                    return true;
+                    selectedFragment = new ShoppingFragment();
+                    break;
             }
-            return false;
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            return true;
         }
     };
 
@@ -39,9 +43,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
     }
     // This is Brysen's comment
 }
