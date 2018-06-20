@@ -1,5 +1,8 @@
 package com.example.wchang.team5_project;
 
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -8,10 +11,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static String SP_USER_STATUS = "userstatus";
+    private EditText editName;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -45,15 +50,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        editName = findViewById(R.id.name_text);
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
-        readSharedPreferances();
+        readSharedPreferences();
     }
 
     protected void onPause() {
         super.onPause();
-        sriteSharedPreferences();
+        writeSharedPreferences();
     }
 
     protected void onStart(){
@@ -62,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onResume(){
         super.onResume();
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
     }
 
 
@@ -74,16 +85,16 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    private void writeShareddPreferences(){
+    private void writeSharedPreferences(){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString(SP;
+        editor.putString(SP_USER_STATUS, editName.getText().toString());
         editor.commit();
     }
     private void readSharedPreferences(){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-        String ... = sp.getString(...);
-        ...
+        String name = sp.getString(SP_USER_STATUS, "");
+        editName.setText(name);
         }
 }
 //This is Darren's comment 2
