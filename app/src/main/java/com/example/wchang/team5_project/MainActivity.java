@@ -97,4 +97,3 @@ public class MainActivity extends AppCompatActivity {
         editName.setText(name);
         }
 }
-//This is Darren's comment 2
