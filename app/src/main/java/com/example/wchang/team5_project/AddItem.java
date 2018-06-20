@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class addItem extends AppCompatActivity {
+public class AddItem extends AppCompatActivity {
 
     private TextView mTextMessage;
 
@@ -20,11 +20,14 @@ public class addItem extends AppCompatActivity {
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                case R.id.navigation_item:
+                    mTextMessage.setText(R.string.title_activity_add_item);
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                case R.id.navigation_recipe:
+                    mTextMessage.setText(R.string.title_activity_add_recipe);
+                    return true;
+                case R.id.navigation_shopping:
+                    mTextMessage.setText(R.string.title_activity_shopping_list);
                     return true;
             }
             return false;
