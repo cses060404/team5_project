@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -44,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    // Refresh or update data
+    public void refreshData(View view) {
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
