@@ -10,4 +10,15 @@
     <string name="quantity">Quantity</string>
     <string name="unit">Unit</string>
     <string name="enter_item">Enter Item</string>
+    <string name="add_item_title">Add Item</string>
+    <string name="add_item_name">NAME:</string>
+    <string name="add_item_quantity">QUANTITY:</string>
+    <string name="add_item_accept_btn">ADD ITEM</string>
+    <string name="add_item_cancel_btn">CANCEL</string>
+    <string name="add_recipe_title">Add New Recipe</string>
+    <string name="add_recipe_name">NAME:</string>
+    <string name="add_recipe_item">ITEM:</string>
+    <string name="add_recipe_description">DESCRIPTION:</string>
+    <string name="add_recipe_accept_btn">ADD RECIPE</string>
+    <string name="add_recipe_cancel_btn">CANCEL</string>
 </resources>

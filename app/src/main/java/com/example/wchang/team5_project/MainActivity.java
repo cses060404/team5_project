@@ -1,5 +1,6 @@
 package com.example.wchang.team5_project;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -45,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    public void addRecipeBtn(View view) {
+        Intent intent = new Intent(this, AddRecipeActivity.class);
+        startActivity(intent);
     }
 
     // Refresh or update data

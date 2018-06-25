@@ -17,14 +17,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".addItem"
-            android:label="@string/title_activity_add_item" />
-        <activity
-            android:name=".AddRecipe"
-            android:label="@string/title_activity_add_recipe" />
-        <activity
-            android:name=".ShoppingList"
-            android:label="@string/title_activity_shopping_list"></activity>
+            android:name=".AddRecipeActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".AddItemToRecipeActivity"></activity>
     </application>
 
 </manifest>
