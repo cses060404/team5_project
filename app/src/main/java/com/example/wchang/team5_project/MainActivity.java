@@ -54,8 +54,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Refresh or update data
-    public void refreshData(View view) {
-
+    public void updateData(View view) {
+        EditText foodName = (EditText) findViewById(R.id.name);
+        EditText quantity = (EditText) findViewById(R.id.quantity);
+        EditText unit = (EditText) findViewById(R.id.unit);
+        //Converts the data items into one continuous string
+        String item  = quantity.getText().toString() + " " + unit.getText().toString()
+                + " " + foodName.getText().toString();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
