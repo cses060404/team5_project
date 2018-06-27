@@ -59,8 +59,12 @@ public class MainActivity extends AppCompatActivity {
         EditText quantity = (EditText) findViewById(R.id.quantity);
         EditText unit = (EditText) findViewById(R.id.unit);
         //Converts the data items into one continuous string
+        //This is in case we ever want to use this
         String item  = quantity.getText().toString() + " " + unit.getText().toString()
                 + " " + foodName.getText().toString();
+        FoodItem foodItem = new FoodItem(foodName.getText().toString(),
+                Float.parseFloat(quantity.getText().toString()),unit.getText().toString());
+        addItem(foodItem);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
