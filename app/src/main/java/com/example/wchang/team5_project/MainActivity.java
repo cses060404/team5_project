@@ -27,6 +27,17 @@ public class MainActivity extends AppCompatActivity {
 
         controller = new Controller(this);
 
+        /*
+        This next code is just to temporalily have some recipes to work with we need to d
+        delete this later..
+         */
+            Recipe newRecipe = new Recipe();
+            newRecipe.addDirection("put the pop-tarts in the toaster");
+            FoodItem newFoodItem = new FoodItem("Pop-Tarts", 2, "na");
+            newRecipe.addFoodItem(newFoodItem);
+            controller.addRecipe(newRecipe);
+        //finished temporary recipes
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();

@@ -6,11 +6,11 @@ public class Recipe {
     Vector<FoodItem> ingredients;
     Vector<String> directions;
 
-    private void addFoodItem(FoodItem newItem){
+    public void addFoodItem(FoodItem newItem){
         ingredients.add(newItem);
     }
 
-    private void addDirection(String newDirection){
+    public void addDirection(String newDirection){
         directions.add(newDirection);
     }
 
