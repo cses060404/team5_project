@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 + " " + foodName.getText().toString();
         FoodItem foodItem = new FoodItem(foodName.getText().toString(),
                 Float.parseFloat(quantity.getText().toString()),unit.getText().toString());
-        addItem(foodItem);
+        controller.addItem(foodItem);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
