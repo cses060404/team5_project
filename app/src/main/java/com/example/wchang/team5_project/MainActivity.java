@@ -18,10 +18,14 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    Controller controller;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        controller = new Controller(this);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -59,8 +63,12 @@ public class MainActivity extends AppCompatActivity {
         EditText quantity = (EditText) findViewById(R.id.quantity);
         EditText unit = (EditText) findViewById(R.id.unit);
         //Converts the data items into one continuous string
+        //This is in case we ever want to use this
         String item  = quantity.getText().toString() + " " + unit.getText().toString()
                 + " " + foodName.getText().toString();
+        FoodItem foodItem = new FoodItem(foodName.getText().toString(),
+                Float.parseFloat(quantity.getText().toString()),unit.getText().toString());
+        addItem(foodItem);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
