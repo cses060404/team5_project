@@ -6,6 +6,11 @@ public class Recipe {
     Vector<FoodItem> ingredients;
     Vector<String> directions;
 
+    public Recipe() {
+        ingredients = new Vector<FoodItem>();
+        directions = new Vector<String>();
+    }
+
     public void addFoodItem(FoodItem newItem){
         ingredients.add(newItem);
     }
