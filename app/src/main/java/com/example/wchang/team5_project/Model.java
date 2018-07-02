@@ -10,4 +10,10 @@ public class Model {
         pantry = new Vector<FoodItem>();
         recipes = new Vector<Recipe>();
     }
+
+    public void addRecipe(Recipe newRecipe) {
+        recipes.add(newRecipe);
+    }
+
+
 }

@@ -2,7 +2,10 @@ package com.example.wchang.team5_project;
 
 import android.app.Activity;
 
-public class Controller {
+import java.io.Serializable;
+import java.util.Vector;
+
+public class Controller implements Serializable {
     Model model;
     Activity mainActivity;
 
@@ -21,6 +24,10 @@ public class Controller {
     }
 
     void addRecipe(Recipe newRecipe){
-        model.recipes.add(newRecipe);
+        model.addRecipe(newRecipe);
     }
+
+    public Vector<Recipe> getRecipes() {return model.recipes;}
+
+    public Vector<FoodItem> getPantry() {return model.pantry;}
 }

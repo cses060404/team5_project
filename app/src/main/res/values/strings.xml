@@ -18,7 +18,7 @@
     <string name="add_recipe_title">Add New Recipe</string>
     <string name="add_recipe_name">NAME:</string>
     <string name="add_recipe_item">ITEM:</string>
-    <string name="add_recipe_description">DESCRIPTION:</string>
+    <string name="add_recipe_direction">DIRECTION::</string>
     <string name="add_recipe_accept_btn">ADD RECIPE</string>
     <string name="add_recipe_cancel_btn">CANCEL</string>
 

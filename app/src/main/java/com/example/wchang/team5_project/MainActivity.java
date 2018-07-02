@@ -1,5 +1,6 @@
 package com.example.wchang.team5_project;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -18,7 +19,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Controller controller;
+    public static Controller controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +32,21 @@ public class MainActivity extends AppCompatActivity {
         This next code is just to temporalily have some recipes to work with we need to d
         delete this later..
          */
+
             Recipe newRecipe = new Recipe();
             newRecipe.addDirection("put the pop-tarts in the toaster");
             FoodItem newFoodItem = new FoodItem("Pop-Tarts", 2, "na");
             newRecipe.addFoodItem(newFoodItem);
+            newRecipe.setName("Pop-Tarts");
             controller.addRecipe(newRecipe);
+
+            //items
+            FoodItem newItem = new FoodItem();
+            newItem.setName("SomeItem");
+            newItem.setQuantity(3);
+            controller.addItem(newItem);
+
+
         //finished temporary recipes
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

@@ -93,10 +93,10 @@
                 app:srcCompat="@drawable/ic_add_circle_black_24dp" />
 
             <TextView
-                android:id="@+id/textView_description"
+                android:id="@+id/textView_direction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/add_recipe_description"
+                android:text="@string/add_recipe_direction"
                 android:textSize="18sp"
                 app:layout_constraintTop_toBottomOf="@id/imageButton_addItem"
                 app:layout_constraintStart_toStartOf="parent"
@@ -104,12 +104,12 @@
                 android:layout_marginStart="16dp"/>
 
             <EditText
-                android:id="@+id/editText_description"
+                android:id="@+id/editText_direction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="16"
                 android:inputType="textMultiLine"
-                app:layout_constraintTop_toBottomOf="@id/textView_description"
+                app:layout_constraintTop_toBottomOf="@id/textView_direction"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="16dp"
