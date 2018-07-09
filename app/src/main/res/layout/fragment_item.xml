@@ -15,8 +15,8 @@
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:ems="10"
+        android:hint="@string/foodName"
         android:inputType="textPersonName"
-        android:text="@string/foodName"
         app:layout_constraintBottom_toTopOf="@+id/quantity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,8 +30,8 @@
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:ems="10"
+        android:hint="@string/quantity"
         android:inputType="numberDecimal"
-        android:text="@string/quantity"
         app:layout_constraintBottom_toTopOf="@+id/unit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name" />
@@ -45,8 +45,8 @@
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:ems="10"
+        android:hint="@string/unit"
         android:inputType="textPersonName"
-        android:text="@string/unit"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quantity" />
