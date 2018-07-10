@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".AddRecipeActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
@@ -24,7 +25,8 @@
                 android:value=".MainActivity" />
         </activity>
         <activity android:name=".AddItemToRecipeActivity" />
-        <activity android:name=".DisplayShoppingList"></activity>
+        <activity android:name=".DisplayShoppingList" />
+        <activity android:name=".DisplayRecipeActivity"></activity>
     </application>
 
 </manifest>

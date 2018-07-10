@@ -1,5 +1,6 @@
 package com.example.wchang.team5_project;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -9,11 +10,37 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Vector;
+
 public class AddRecipeActivity extends AppCompatActivity {
 
+    public static final int REQUEST_CODE = 1001;
     private EditText et_name;
     private LinearLayout ll_item;
     private EditText et_direction;
+    private String selectedItem;
+    private Vector<FoodItem> items;
+
+    class RequiredItem {
+        private String name;
+        private String quantity;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getQuantity() {
+            return quantity;
+        }
+
+        public void setQuantity(String quantity) {
+            this.quantity = quantity;
+        }
+    }
 
 
     @Override
@@ -25,11 +52,12 @@ public class AddRecipeActivity extends AppCompatActivity {
         et_name = findViewById(R.id.editText_name);
         ll_item = findViewById(R.id.linearLayout_item);
         et_direction = findViewById(R.id.editText_direction);
+        items = new Vector<FoodItem>();
     }
 
     public void addItemBtn(View view) {
         Intent intent = new Intent(this, AddItemToRecipeActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, REQUEST_CODE);
 
     }
 
@@ -37,17 +65,59 @@ public class AddRecipeActivity extends AppCompatActivity {
         String name = et_name.getText().toString();
         String direction = et_direction.getText().toString();
 
+
         Recipe newRecipe = new Recipe();
         newRecipe.addDirection(direction);
         newRecipe.setName(name);
+        for(int i = 0; i < items.size(); i++) {
+            newRecipe.addFoodItem(items.get(i));
+        }
 
         MainActivity.controller.addRecipe(newRecipe);
 
-        onBackPressed();
+        finish();
     }
 
     public void cancelBtn(View view) {
-        onBackPressed();
+        finish();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateItemView();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case REQUEST_CODE:
+                if(resultCode == Activity.RESULT_OK) {
+                    FoodItem newItem = new FoodItem();
+                    newItem.setName(data.getStringExtra("selectedItem"));
+                    newItem.setQuantity(data.getStringExtra("selectedItemQuantity"));
+
+                    Vector<FoodItem> pantry = MainActivity.controller.getPantry();
+                    int index = 0;
+                    for(index = 0; index < pantry.size(); index++) {
+                        if(pantry.get(index).getName().equals(newItem.getName()))
+                            newItem.setUnit(pantry.get(index).getUnit());
+                    }
+                    items.add(newItem);
+                    updateItemView();
+                }
+        }
+    }
+
+    public void updateItemView() {
+        ll_item.removeAllViewsInLayout();
+        for(int i = 0; i < items.size(); i++) {
+            TextView tv = new TextView(this);
+            tv.setText(items.get(i).getName() + "( " + items.get(i).getQuantity() + " " + items.get(i).getUnit()+ ")");
+            tv.setTextSize(24);
+            tv.setId(i);
+            ll_item.addView(tv);
+        }
+    }
 }
