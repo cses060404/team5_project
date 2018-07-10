@@ -21,6 +21,14 @@ public class Controller implements Serializable {
         this.mainActivity = mainActivity;
     }
 
+    public void setModel(Model model) {
+        this.model = model;
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
     void addItem(FoodItem newItem){
         model.pantry.add(newItem);
     }

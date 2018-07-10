@@ -18,9 +18,29 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 public class MainActivity extends AppCompatActivity {
 
     public static Controller controller;
+    public final String DATA = "Model_File";
+
+    public void loadData() {
+        SharedPreferences prefs = getSharedPreferences(DATA, MODE_PRIVATE);
+        String jsonString = prefs.getString("model", "");
+        Gson gson = new Gson();
+        Model restoredModel = gson.fromJson(jsonString, Model.class);
+        controller.setModel(restoredModel);
+    }
+
+    public void saveData() {
+        SharedPreferences.Editor editor = getSharedPreferences(DATA, MODE_PRIVATE).edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(controller.getModel());
+        editor.putString("model", json);
+        editor.commit();
+        editor.apply();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         controller = new Controller(this);
+
+        loadData();
 
         /*
         This next code is just to temporalily have some recipes to work with we need to d
@@ -65,14 +87,17 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onResume(){
         super.onResume();
+        saveData();
     }
 
     protected void onStop(){
         super.onStop();
+        saveData();
     }
 
     protected void onDestroy() {
         super.onDestroy();
+        saveData();
     }
 
     public void addRecipeBtn(View view) {
