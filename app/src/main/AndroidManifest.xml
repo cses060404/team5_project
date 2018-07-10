@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".AddRecipeActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
