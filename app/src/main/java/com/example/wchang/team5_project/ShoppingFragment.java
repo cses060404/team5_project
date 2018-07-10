@@ -34,7 +34,7 @@ public class ShoppingFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new MyAdapter(myDataset);
+      //  mAdapter = new MyAdapter(myDataset);
         mRecyclerView.setAdapter(mAdapter);
 
 

@@ -9,19 +9,25 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
+
+import static com.example.wchang.team5_project.MainActivity.controller;
 
 public class HomeFragment extends Fragment {
     private EditText editName;
     private static String SP_USER_STATUS = "userstatus";
-
+    private ListView listView;
+    private ArrayAdapter<FoodItem> adapter = new ArrayAdapter<FoodItem>(getContext(), android.R.layout.simple_list_item_1, controller.getPantry());
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         editName = (EditText)view.findViewById(R.id.name_text);
         readSharedPreferences();
-
+        listView = (ListView)view.findViewById(R.id.foodItemListView);
+        listView.setAdapter(adapter);
         return view;
     }
 
@@ -43,4 +49,6 @@ public class HomeFragment extends Fragment {
         String name = sp.getString(SP_USER_STATUS, "");
         editName.setText(name);
     }
+
+
 }

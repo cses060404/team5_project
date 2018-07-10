@@ -12,6 +12,8 @@ public class Controller implements Serializable {
     public Controller() {
         model = new Model();
         mainActivity = new Activity();
+        FoodItem foodItem = new FoodItem("butter",1,"cup");
+        addItem(foodItem);
     }
 
     Controller(Activity mainActivity){
