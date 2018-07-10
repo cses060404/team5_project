@@ -43,6 +43,18 @@ public class RecipeFragment extends Fragment {
             tv.setText(recipes.get(i).getName());
             tv.setTextSize(24);
             tv.setId(i);
+            tv.setClickable(true);
+            final int finalI = i;
+            tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), DisplayRecipeActivity.class);
+                    intent.putExtra("recipeName", recipes.get(finalI).getName());
+                    intent.putExtra("items", recipes.get(finalI).getIngredients());
+                    intent.putExtra("directions", recipes.get(finalI).getDirections());
+                    startActivity(intent);
+                }
+            });
             ll_recipe.addView(tv);
         }
     }

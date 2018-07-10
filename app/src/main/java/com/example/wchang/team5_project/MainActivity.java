@@ -41,10 +41,12 @@ public class MainActivity extends AppCompatActivity {
             controller.addRecipe(newRecipe);
 
             //items
+        for(int i = 0; i < 5; i++) {
             FoodItem newItem = new FoodItem();
-            newItem.setName("SomeItem");
+            newItem.setName("SomeItem" + i);
             newItem.setQuantity(3);
             controller.addItem(newItem);
+        }
 
 
         //finished temporary recipes

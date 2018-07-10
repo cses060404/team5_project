@@ -4,6 +4,7 @@ public class FoodItem {
     String name;
     float quantity;
     String unit;
+    String barcode;
 
     public FoodItem() {
         name = null;
@@ -27,9 +28,10 @@ public class FoodItem {
     public float getQuantity() {
         return quantity;
     }
-    public void setQuantity(int quantity) {
+    public void setQuantity(float quantity) {
         this.quantity = quantity;
     }
+    public void setQuantity(String quantity) {this.quantity = Float.valueOf(quantity);}
 
     public String getUnit() {
         return unit;
