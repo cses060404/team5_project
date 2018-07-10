@@ -19,7 +19,7 @@ public class AddRecipeActivity extends AppCompatActivity {
     private LinearLayout ll_item;
     private EditText et_direction;
     private String selectedItem;
-    private Vector<RequiredItem> items;
+    private Vector<FoodItem> items;
 
     class RequiredItem {
         private String name;
@@ -52,7 +52,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         et_name = findViewById(R.id.editText_name);
         ll_item = findViewById(R.id.linearLayout_item);
         et_direction = findViewById(R.id.editText_direction);
-        items = new Vector<RequiredItem>();
+        items = new Vector<FoodItem>();
     }
 
     public void addItemBtn(View view) {
@@ -70,10 +70,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         newRecipe.addDirection(direction);
         newRecipe.setName(name);
         for(int i = 0; i < items.size(); i++) {
-            FoodItem newFoodItem = new FoodItem();
-            newFoodItem.setName(items.get(i).getName());
-            newFoodItem.setQuantity(items.get(i).getQuantity());
-            newRecipe.addFoodItem(newFoodItem);
+            newRecipe.addFoodItem(items.get(i));
         }
 
         MainActivity.controller.addRecipe(newRecipe);
@@ -97,9 +94,16 @@ public class AddRecipeActivity extends AppCompatActivity {
         switch(requestCode) {
             case REQUEST_CODE:
                 if(resultCode == Activity.RESULT_OK) {
-                    RequiredItem newItem = new RequiredItem();
+                    FoodItem newItem = new FoodItem();
                     newItem.setName(data.getStringExtra("selectedItem"));
                     newItem.setQuantity(data.getStringExtra("selectedItemQuantity"));
+
+                    Vector<FoodItem> pantry = MainActivity.controller.getPantry();
+                    int index = 0;
+                    for(index = 0; index < pantry.size(); index++) {
+                        if(pantry.get(index).getName().equals(newItem.getName()))
+                            newItem.setUnit(pantry.get(index).getUnit());
+                    }
                     items.add(newItem);
                     updateItemView();
                 }
@@ -110,7 +114,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         ll_item.removeAllViewsInLayout();
         for(int i = 0; i < items.size(); i++) {
             TextView tv = new TextView(this);
-            tv.setText(items.get(i).getName() + "(" + items.get(i).getQuantity() + ")");
+            tv.setText(items.get(i).getName() + "( " + items.get(i).getQuantity() + " " + items.get(i).getUnit()+ ")");
             tv.setTextSize(24);
             tv.setId(i);
             ll_item.addView(tv);

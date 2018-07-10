@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,13 +41,11 @@ public class MainActivity extends AppCompatActivity {
             newRecipe.setName("Pop-Tarts");
             controller.addRecipe(newRecipe);
 
-            //items
-        for(int i = 0; i < 5; i++) {
-            FoodItem newItem = new FoodItem();
-            newItem.setName("SomeItem" + i);
-            newItem.setQuantity(3);
-            controller.addItem(newItem);
-        }
+
+        FoodItem banana = new FoodItem("Banana", 15, "oz");
+        controller.addItem(banana);
+        FoodItem apple = new FoodItem("Apple", 10, "oz");
+        controller.addItem(apple);
 
 
         //finished temporary recipes
@@ -93,6 +92,12 @@ public class MainActivity extends AppCompatActivity {
         FoodItem foodItem = new FoodItem(foodName.getText().toString(),
                 Float.parseFloat(quantity.getText().toString()),unit.getText().toString());
         controller.addItem(foodItem);
+        foodName.setText("");
+        quantity.setText("");
+        unit.setText("");
+        Toast.makeText(this, "Added New Item Successfully", Toast.LENGTH_LONG).show();
+        View current = getCurrentFocus();
+        if(current != null) current.clearFocus();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
