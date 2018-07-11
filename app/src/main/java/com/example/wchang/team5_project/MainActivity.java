@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         EditText unit = (EditText) findViewById(R.id.unit);
         //Converts the data items into one continuous string
         //This is in case we ever want to use this
-        String item  = quantity.getText().toString() + " " + unit.getText().toString()
+        /*String item  = quantity.getText().toString() + " " + unit.getText().toString()
                 + " " + foodName.getText().toString();
         FoodItem foodItem = new FoodItem(foodName.getText().toString(),
                 Float.parseFloat(quantity.getText().toString()),unit.getText().toString());
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         unit.setText("");
         Toast.makeText(this, "Added New Item Successfully", Toast.LENGTH_LONG).show();
         View current = getCurrentFocus();
-        if(current != null) current.clearFocus();
+        if(current != null) current.clearFocus();*/
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
