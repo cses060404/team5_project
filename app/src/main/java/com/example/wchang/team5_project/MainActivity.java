@@ -66,12 +66,7 @@ public class MainActivity extends AppCompatActivity {
             newRecipe.addFoodItem(newFoodItem);
             newRecipe.setName("Pop-Tarts");
             controller.addRecipe(newRecipe);
-
-
-        FoodItem banana = new FoodItem("Banana", 15, "oz");
-        controller.addItem(banana);
-        FoodItem apple = new FoodItem("Apple", 10, "oz");
-        controller.addItem(apple);
+            
 
 
         //finished temporary recipes
@@ -83,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onPause() {
         super.onPause();
+        saveData();
     }
 
     protected void onStart(){
