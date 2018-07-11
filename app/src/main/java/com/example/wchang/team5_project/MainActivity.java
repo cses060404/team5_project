@@ -29,8 +29,12 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(DATA, MODE_PRIVATE);
         String jsonString = prefs.getString("model", "");
         Gson gson = new Gson();
-        Model restoredModel = gson.fromJson(jsonString, Model.class);
-        controller.setModel(restoredModel);
+        if(jsonString != "") {
+            Model restoredModel = gson.fromJson(jsonString, Model.class);
+            controller.setModel(restoredModel);
+        } else {
+            controller.setModel(new Model());
+        }
     }
 
     public void saveData() {
