@@ -114,6 +114,12 @@ public class MainActivity extends AppCompatActivity {
         EditText foodName = (EditText) findViewById(R.id.name);
         EditText quantity = (EditText) findViewById(R.id.quantity);
         EditText unit = (EditText) findViewById(R.id.unit);
+        if (foodName == null)
+            return;
+        if (quantity == null)
+            return;
+        if (unit == null)
+            return;
         //Converts the data items into one continuous string
         //This is in case we ever want to use this
         String item  = quantity.getText().toString() + " " + unit.getText().toString()
