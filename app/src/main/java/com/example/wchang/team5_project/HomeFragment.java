@@ -19,7 +19,7 @@ public class HomeFragment extends Fragment {
     private EditText editName;
     private static String SP_USER_STATUS = "userstatus";
     private ListView listView;
-    private ArrayAdapter<FoodItem> adapter = new ArrayAdapter<FoodItem>(getContext(), android.R.layout.simple_list_item_1, controller.getPantry());
+    private ArrayAdapter<FoodItem> adapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -28,6 +28,9 @@ public class HomeFragment extends Fragment {
         readSharedPreferences();
         listView = (ListView)view.findViewById(R.id.foodItemListView);
         listView.setAdapter(adapter);
+
+        adapter = new ArrayAdapter<FoodItem>(getContext(), android.R.layout.simple_list_item_1, controller.getPantry());
+
         return view;
     }
 

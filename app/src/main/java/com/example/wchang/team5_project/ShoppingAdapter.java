@@ -24,7 +24,7 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.MyView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.custom_shopping_row,parent, false);
+        View view = inflater.inflate(R.layout.fragment_shopping,parent, false);
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }
@@ -40,12 +40,12 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.MyView
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
-TextView title;
-ImageView icon;
+        TextView title;
+        ImageView icon;
         public MyViewHolder(View itemView) {
             super(itemView);
-            title = (TextView)itemView.findViewById(R.id.listText);
-            icon = (ImageView) itemView.findViewById(R.id.listIcon);
+            //title = (TextView)itemView.findViewById(R.id.listText);
+            //icon = (ImageView) itemView.findViewById(R.id.listIcon);
         }
     }
 }

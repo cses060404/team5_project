@@ -32,7 +32,7 @@ public class DisplayRecipeActivity extends AppCompatActivity {
         items = intent.getParcelableExtra("items");
         directions = intent.getParcelableExtra("directions");
 
-        tv_name.setText(name);
+
         for(int i = 0; i < items.size(); i++) {
             TextView tv = new TextView(this);
             tv.setText(items.get(i).getName() + " (" + items.get(i).getQuantity() + ")");
@@ -40,6 +40,7 @@ public class DisplayRecipeActivity extends AppCompatActivity {
             tv.setId(i);
             ll_items.addView(tv);
         }
+
         for(int i = 0; i < directions.size(); i++) {
             tv_direction.setText(tv_direction.getText() + "\n" + directions.get(i));
         }

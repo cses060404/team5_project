@@ -49,9 +49,7 @@ public class RecipeFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getActivity(), DisplayRecipeActivity.class);
-                    intent.putExtra("recipeName", recipes.get(finalI).getName());
-                    intent.putExtra("items", recipes.get(finalI).getIngredients());
-                    intent.putExtra("directions", recipes.get(finalI).getDirections());
+
                     startActivity(intent);
                 }
             });
