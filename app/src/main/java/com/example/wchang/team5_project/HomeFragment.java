@@ -27,10 +27,9 @@ public class HomeFragment extends Fragment {
         editName = (EditText)view.findViewById(R.id.name_text);
         readSharedPreferences();
         listView = (ListView)view.findViewById(R.id.foodItemListView);
-        listView.setAdapter(adapter);
 
         adapter = new ArrayAdapter<FoodItem>(getContext(), android.R.layout.simple_list_item_1, controller.getPantry());
-
+        listView.setAdapter(adapter);
         return view;
     }
 
