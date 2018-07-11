@@ -23,26 +23,16 @@ public class DisplayRecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_recipe);
 
-        tv_name = findViewById(R.id.editText_name);
-        ll_items = findViewById(R.id.linearLayout_item);
-        tv_direction = findViewById(R.id.textView_direction_contents);
+        tv_name = this.findViewById(R.id.editText_name);
+        ll_items = this.findViewById(R.id.linearLayout_item);
+        tv_direction = this.findViewById(R.id.textView_direction_contents);
 
         Intent intent = getIntent();
         name = intent.getStringExtra("recipeName");
         items = intent.getParcelableExtra("items");
         directions = intent.getParcelableExtra("directions");
 
+        tv_name.setText(name);
 
-        for(int i = 0; i < items.size(); i++) {
-            TextView tv = new TextView(this);
-            tv.setText(items.get(i).getName() + " (" + items.get(i).getQuantity() + ")");
-            tv.setTextSize(20);
-            tv.setId(i);
-            ll_items.addView(tv);
-        }
-
-        for(int i = 0; i < directions.size(); i++) {
-            tv_direction.setText(tv_direction.getText() + "\n" + directions.get(i));
-        }
     }
 }
