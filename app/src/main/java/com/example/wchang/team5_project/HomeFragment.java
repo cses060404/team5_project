@@ -31,6 +31,8 @@ public class HomeFragment extends Fragment {
         adapter = new ArrayAdapter<FoodItem>(getContext(), android.R.layout.simple_list_item_1, controller.getPantry());
         listView.setAdapter(adapter);
 
+
+
         return view;
     }
 

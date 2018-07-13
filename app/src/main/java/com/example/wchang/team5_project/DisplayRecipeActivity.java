@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -40,6 +41,7 @@ public class DisplayRecipeActivity extends AppCompatActivity {
     }
 
     public void updateView() {
+        recipe = MainActivity.controller.getRecipes().get(index);
         tv_name.setText(recipe.getName());
         ll_items.removeAllViewsInLayout();
         for(int i = 0; i < recipe.getIngredients().size(); i++) {
@@ -75,6 +77,7 @@ public class DisplayRecipeActivity extends AppCompatActivity {
 
     public void deleteBtn(View view) {
         MainActivity.controller.deleteRecipe(index);
+        Toast.makeText(this, "Recipe Deleted!", Toast.LENGTH_LONG).show();
         finish();
     }
 }

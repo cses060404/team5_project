@@ -103,9 +103,8 @@ public class MainActivity extends AppCompatActivity{
             toast.show();
 
             //Trying to get data from api
-            //APIRetriever api= new APIRetriever();
-            //api.retrieveData(barcode);
-
+            AsyncLoadItem loadItem = new AsyncLoadItem(barcode, this);
+            loadItem.execute();
             //item = api.getItem();
 
             //ItemLoader il = new ItemLoader();

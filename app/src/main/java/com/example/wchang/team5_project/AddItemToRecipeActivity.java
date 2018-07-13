@@ -9,8 +9,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Vector;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 public class AddItemToRecipeActivity extends AppCompatActivity {
 
@@ -31,8 +34,26 @@ public class AddItemToRecipeActivity extends AppCompatActivity {
         updateSpinner();
     }
 
+    public boolean validateForm() {
+        if(s_item.getSelectedItem().toString().matches("Select Item")) {
+            Toast.makeText(this, "Please Select An Item!", LENGTH_SHORT).show();
+            s_item.requestFocus();
+            return false;
+        }
+        else if(et_quantity.getText().toString().matches("")) {
+            Toast.makeText(this, "Please Enter The Quantity!", LENGTH_SHORT).show();
+            s_item.requestFocus();
+            return false;
+        }
+        else {
+            Toast.makeText(this, "Item Added!", Toast.LENGTH_LONG).show();
+            return true;
+        }
+    }
+
     public void updateSpinner() {
         Vector<String> list = new Vector<String>();
+        list.add("Select Item");
         for(int i = 0; i < items.size(); i++) {
             list.add(items.get(i).getName());
         }
@@ -43,13 +64,15 @@ public class AddItemToRecipeActivity extends AppCompatActivity {
     }
 
     public void addItemBtn(View view) {
-        String selectedItem = s_item.getSelectedItem().toString();
-        String quantity = et_quantity.getText().toString();
-        Intent intent = new Intent();
-        intent.putExtra("selectedItem", selectedItem);
-        intent.putExtra("selectedItemQuantity", quantity);
-        setResult(RESULT_OK, intent);
-        finish();
+        if(validateForm()) {
+            String selectedItem = s_item.getSelectedItem().toString();
+            String quantity = et_quantity.getText().toString();
+            Intent intent = new Intent();
+            intent.putExtra("selectedItem", selectedItem);
+            intent.putExtra("selectedItemQuantity", quantity);
+            setResult(RESULT_OK, intent);
+            finish();
+        }
     }
 
     public void cancelBtn(View view) {

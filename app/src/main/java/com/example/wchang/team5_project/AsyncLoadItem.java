@@ -1,6 +1,9 @@
 package com.example.wchang.team5_project;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -11,13 +14,13 @@ import java.net.URL;
 
 public class AsyncLoadItem extends AsyncTask<Void, Void, String> {
 
-    private String barcode;
-    private FoodItem foodItem;
+    private Barcode barcode;
+    private Activity activity;
 
 
-    public AsyncLoadItem(String barcode, FoodItem foodItem) {
+    public AsyncLoadItem(Barcode barcode, Activity activity) {
         this.barcode = barcode;
-        this.foodItem = foodItem;
+        this.activity = activity;
     }
 
     @Override
@@ -25,7 +28,7 @@ public class AsyncLoadItem extends AsyncTask<Void, Void, String> {
 
         try {
             //this is a sample api
-            String s = "https://api.upcdatabase.org/product/0111222333446/098f6bcd4621d373cade4e832627b4f6";
+            String s = "https://api.barcodelookup.com/v2/products?barcode=9780140157376&formatted=y&key=tk1qu2huudl9znmbr894o1cr9gc1yy";
             URL url = new URL(s);
 
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -50,17 +53,19 @@ public class AsyncLoadItem extends AsyncTask<Void, Void, String> {
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return "Something Went Wrong!";
     }
 
     @Override
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
+        Toast.makeText(activity, "Loading Data...", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     protected void onPostExecute(String s) {
         Gson gson = new Gson();
-        foodItem = gson.fromJson(s, FoodItem.class);
+        Toast.makeText(activity, "Loading Completed!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(activity, s, Toast.LENGTH_LONG).show();
     }
 }
