@@ -172,6 +172,20 @@ public class MainActivity extends AppCompatActivity{
         if(current != null) current.clearFocus();
     }
 
+    //Deletes food items
+    public void deleteData(View view) {
+        //It is unclear how the data will be handled here
+        EditText foodName = (EditText) findViewById(R.id.name);
+        EditText quantity = (EditText) findViewById(R.id.quantity);
+        EditText unit = (EditText) findViewById(R.id.unit);
+        //This is in case we ever want to use this
+        String item  = quantity.getText().toString() + " " + unit.getText().toString()
+                + " " + foodName.getText().toString();
+        FoodItem foodItem = new FoodItem(foodName.getText().toString(),
+                Float.parseFloat(quantity.getText().toString()),unit.getText().toString());
+        controller.deleteItem(foodItem);
+    }
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
