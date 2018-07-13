@@ -26,7 +26,12 @@
         </activity>
         <activity android:name=".AddItemToRecipeActivity" />
         <activity android:name=".DisplayShoppingList" />
-        <activity android:name=".DisplayRecipeActivity"></activity>
+        <activity android:name=".DisplayRecipeActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
     </application>
 
 </manifest>

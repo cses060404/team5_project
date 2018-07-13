@@ -25,15 +25,29 @@ public class DisplayRecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_recipe);
 
-        tv_name = this.findViewById(R.id.editText_name);
-        ll_items = this.findViewById(R.id.linearLayout_item);
-        tv_direction = this.findViewById(R.id.textView_direction_contents);
+        tv_name = findViewById(R.id.textView_recipe_name);
+        ll_items = findViewById(R.id.linearLayout_item);
+        tv_direction = findViewById(R.id.textView_direction_contents);
 
         String json = getIntent().getExtras().getString("recipe");
         Gson gson = new Gson();
 
         recipe = gson.fromJson(json, Recipe.class);
 
-
+        tv_name.setText(recipe.getName());
+        for(int i = 0; i < recipe.getIngredients().size(); i++) {
+            TextView tv = new TextView(this);
+            tv.setText(recipe.getIngredients().get(i).displayDetail());
+            tv.setId(i);
+            tv.setTextSize(20);
+            ll_items.addView(tv);
+        }
+        for(int i = 0; i < recipe.getDirections().size(); i++) {
+            TextView tv = new TextView(this);
+            tv.setText(recipe.getDirections().get(i));
+            tv.setId(i);
+            tv.setTextSize(20);
+            tv_direction.setText(recipe.getDirections().get(i));
+        }
     }
 }
