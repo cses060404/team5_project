@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@id/linearLayout_item"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="50dp"/>
 
     <TextView
         android:id="@+id/textView_direction_contents"
@@ -61,5 +61,27 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="7dp"
         android:layout_marginStart="50dp" />
+
+    <Button
+        android:id="@+id/button_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
+        android:layout_marginStart="90dp"
+        android:onClick="editBtn"
+        android:text="EDIT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
+        android:layout_marginStart="30dp"
+        android:onClick="deleteBtn"
+        android:text="DELETE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/button_edit" />
 
 </android.support.constraint.ConstraintLayout>

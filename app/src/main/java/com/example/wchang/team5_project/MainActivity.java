@@ -65,13 +65,14 @@ public class MainActivity extends AppCompatActivity{
         delete this later..
          */
 
+        /*
             Recipe newRecipe = new Recipe();
             newRecipe.addDirection("put the pop-tarts in the toaster");
             FoodItem newFoodItem = new FoodItem("Pop-Tarts", 2, "na");
             newRecipe.addFoodItem(newFoodItem);
             newRecipe.setName("Pop-Tarts");
             controller.addRecipe(newRecipe);
-            
+            */
 
 
         //finished temporary recipes
