@@ -40,13 +40,15 @@ public class RecipeFragment extends Fragment {
 
         lv_recipe = (ListView) view.findViewById(R.id.listView_recipe);
 
+        updateView();
+
+        return view;
+    }
+
+    public void updateView() {
         recipes = MainActivity.controller.getRecipes();
-
         adapter = new ArrayAdapter<Recipe>(getContext(), android.R.layout.simple_list_item_1, controller.getRecipes());
-
-
         lv_recipe.setAdapter(adapter);
-
         lv_recipe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -57,12 +59,11 @@ public class RecipeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-        return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        updateView();
     }
 }
