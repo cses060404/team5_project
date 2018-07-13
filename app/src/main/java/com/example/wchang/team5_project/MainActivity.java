@@ -14,16 +14,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-public class MainActivity extends AppCompatActivity {
+import google.zxing.integration.android.IntentIntegrator;
+import google.zxing.integration.android.IntentResult;
+
+public class MainActivity extends AppCompatActivity{
 
     public static Controller controller;
     public final String DATA = "Model_File";
+    private Barcode barcode;
 
     public void loadData() {
         SharedPreferences prefs = getSharedPreferences(DATA, MODE_PRIVATE);
@@ -52,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         controller = new Controller(this);
-
+        barcode = new Barcode();
         loadData();
 
         /*
@@ -74,6 +79,42 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+
+    }
+
+    public void scanningBtn(View v) {
+        //start scanning
+        if(v.getId() == R.id.scanBtn){
+            IntentIntegrator scanIntegrator = new IntentIntegrator(this);
+            scanIntegrator.initiateScan();
+        }
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+
+        if (scanningResult != null) {
+            //Scanning Result
+            barcode.setContent(scanningResult.getContents());
+            barcode.setFormat(scanningResult.getFormatName());
+
+            Toast toast = Toast.makeText(getApplicationContext(), "Barcode Content: " + barcode.getContent(), Toast.LENGTH_SHORT);
+            toast.show();
+
+            //Trying to get data from api
+            //APIRetriever api= new APIRetriever();
+            //api.retrieveData(barcode);
+
+            //item = api.getItem();
+
+            //ItemLoader il = new ItemLoader();
+            //il.execute(barcode);
+        }
+        else{
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "No scan data received!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     protected void onPause() {

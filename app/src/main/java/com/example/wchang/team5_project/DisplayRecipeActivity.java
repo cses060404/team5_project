@@ -1,11 +1,15 @@
 package com.example.wchang.team5_project;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class DisplayRecipeActivity extends AppCompatActivity {
@@ -14,9 +18,7 @@ public class DisplayRecipeActivity extends AppCompatActivity {
     private LinearLayout ll_items;
     private TextView tv_direction;
 
-    private String name;
-    private Vector<FoodItem> items;
-    private Vector<String> directions;
+    private Recipe recipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +29,11 @@ public class DisplayRecipeActivity extends AppCompatActivity {
         ll_items = this.findViewById(R.id.linearLayout_item);
         tv_direction = this.findViewById(R.id.textView_direction_contents);
 
-        Intent intent = getIntent();
-        name = intent.getStringExtra("recipeName");
-        items = intent.getParcelableExtra("items");
-        directions = intent.getParcelableExtra("directions");
+        String json = getIntent().getExtras().getString("recipe");
+        Gson gson = new Gson();
 
-        tv_name.setText(name);
+        recipe = gson.fromJson(json, Recipe.class);
+
 
     }
 }

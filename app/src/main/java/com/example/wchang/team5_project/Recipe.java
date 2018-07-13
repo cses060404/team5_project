@@ -1,6 +1,10 @@
 package com.example.wchang.team5_project;
 
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.Vector;
+import java.util.stream.Stream;
 
 public class Recipe {
     Vector<FoodItem> ingredients;
