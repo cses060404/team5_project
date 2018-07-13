@@ -65,13 +65,14 @@ public class MainActivity extends AppCompatActivity{
         delete this later..
          */
 
+        /*
             Recipe newRecipe = new Recipe();
             newRecipe.addDirection("put the pop-tarts in the toaster");
             FoodItem newFoodItem = new FoodItem("Pop-Tarts", 2, "na");
             newRecipe.addFoodItem(newFoodItem);
             newRecipe.setName("Pop-Tarts");
             controller.addRecipe(newRecipe);
-            
+            */
 
 
         //finished temporary recipes
@@ -170,6 +171,20 @@ public class MainActivity extends AppCompatActivity{
         Toast.makeText(this, "Added New Item Successfully", Toast.LENGTH_LONG).show();
         View current = getCurrentFocus();
         if(current != null) current.clearFocus();
+    }
+
+    //Deletes food items
+    public void deleteData(View view) {
+        //It is unclear how the data will be handled here
+        EditText foodName = (EditText) findViewById(R.id.name);
+        EditText quantity = (EditText) findViewById(R.id.quantity);
+        EditText unit = (EditText) findViewById(R.id.unit);
+        //This is in case we ever want to use this
+        String item  = quantity.getText().toString() + " " + unit.getText().toString()
+                + " " + foodName.getText().toString();
+        FoodItem foodItem = new FoodItem(foodName.getText().toString(),
+                Float.parseFloat(quantity.getText().toString()),unit.getText().toString());
+        controller.deleteItem(foodItem);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
