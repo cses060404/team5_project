@@ -5,9 +5,9 @@
 
     <ImageView
         android:id="@+id/listIcon"
-        android:layout_width="110dp"
-        android:layout_height="103dp"
         android:layout_gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/apples" />
     <TextView
         android:id="@+id/listText"
