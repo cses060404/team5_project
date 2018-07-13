@@ -41,16 +41,16 @@ public class HomeFragment extends Fragment {
     }
 
     public void writeSharedPreferences(){
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString(SP_USER_STATUS, editName.getText().toString());
-        editor.commit();
+        //SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        //SharedPreferences.Editor editor = sp.edit();
+        //editor.putString(SP_USER_STATUS, editName.getText().toString());
+        //editor.commit();
     }
 
     public void readSharedPreferences(){
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        String name = sp.getString(SP_USER_STATUS, "");
-        editName.setText(name);
+        //SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        //String name = sp.getString(SP_USER_STATUS, "");
+        //editName.setText(name);
     }
 
 
