@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ public class DisplayRecipeActivity extends AppCompatActivity {
     private TextView tv_direction;
 
     private Recipe recipe;
+    private int index;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +33,15 @@ public class DisplayRecipeActivity extends AppCompatActivity {
 
         String json = getIntent().getExtras().getString("recipe");
         Gson gson = new Gson();
-
         recipe = gson.fromJson(json, Recipe.class);
+        index = getIntent().getExtras().getInt("position");
 
+        updateView();
+    }
+
+    public void updateView() {
         tv_name.setText(recipe.getName());
+        ll_items.removeAllViewsInLayout();
         for(int i = 0; i < recipe.getIngredients().size(); i++) {
             TextView tv = new TextView(this);
             tv.setText(recipe.getIngredients().get(i).displayDetail());
@@ -49,5 +56,25 @@ public class DisplayRecipeActivity extends AppCompatActivity {
             tv.setTextSize(20);
             tv_direction.setText(recipe.getDirections().get(i));
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateView();
+    }
+
+    public void editBtn(View view) {
+        Intent intent = new Intent(this, AddRecipeActivity.class);
+        Gson gson = new Gson();
+        String json = gson.toJson(recipe);
+        intent.putExtra("recipe", json);
+        intent.putExtra("index", index);
+        startActivity(intent);
+    }
+
+    public void deleteBtn(View view) {
+        MainActivity.controller.deleteRecipe(index);
+        finish();
     }
 }

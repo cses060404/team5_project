@@ -56,6 +56,7 @@ public class RecipeFragment extends Fragment {
                 Gson gson = new Gson();
                 String json = gson.toJson(recipes.get(position));
                 intent.putExtra("recipe", json);
+                intent.putExtra("position", position);
                 startActivity(intent);
             }
         });

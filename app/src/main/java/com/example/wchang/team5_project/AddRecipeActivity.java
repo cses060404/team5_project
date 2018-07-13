@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.util.Vector;
 
 public class AddRecipeActivity extends AppCompatActivity {
@@ -20,27 +22,8 @@ public class AddRecipeActivity extends AppCompatActivity {
     private EditText et_direction;
     private String selectedItem;
     private Vector<FoodItem> items;
-
-    class RequiredItem {
-        private String name;
-        private String quantity;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getQuantity() {
-            return quantity;
-        }
-
-        public void setQuantity(String quantity) {
-            this.quantity = quantity;
-        }
-    }
+    private Recipe recipe;
+    private int index;
 
 
     @Override
@@ -48,11 +31,23 @@ public class AddRecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
 
-
         et_name = findViewById(R.id.editText_name);
         ll_item = findViewById(R.id.linearLayout_item);
         et_direction = findViewById(R.id.editText_direction);
         items = new Vector<FoodItem>();
+
+
+
+        if(getIntent().getExtras() != null) {
+            String json = getIntent().getExtras().getString("recipe");
+            Gson gson = new Gson();
+            recipe = gson.fromJson(json, Recipe.class);
+            index = getIntent().getExtras().getInt("index");
+            et_name.setText(recipe.getName());
+            items = recipe.getIngredients();
+            et_direction.setText(recipe.getDirections().get(0));
+        }
+
     }
 
     public void addItemBtn(View view) {
@@ -65,7 +60,6 @@ public class AddRecipeActivity extends AppCompatActivity {
         String name = et_name.getText().toString();
         String direction = et_direction.getText().toString();
 
-
         Recipe newRecipe = new Recipe();
         newRecipe.addDirection(direction);
         newRecipe.setName(name);
@@ -73,7 +67,12 @@ public class AddRecipeActivity extends AppCompatActivity {
             newRecipe.addFoodItem(items.get(i));
         }
 
-        MainActivity.controller.addRecipe(newRecipe);
+        if(getIntent().getExtras() != null) {
+            MainActivity.controller.deleteRecipe(index);
+            MainActivity.controller.getRecipes().insertElementAt(newRecipe, index);
+        }
+        else
+            MainActivity.controller.addRecipe(newRecipe);
 
         finish();
     }
@@ -99,7 +98,7 @@ public class AddRecipeActivity extends AppCompatActivity {
                     newItem.setQuantity(data.getStringExtra("selectedItemQuantity"));
 
                     Vector<FoodItem> pantry = MainActivity.controller.getPantry();
-                    int index = 0;
+                    int index;
                     for(index = 0; index < pantry.size(); index++) {
                         if(pantry.get(index).getName().equals(newItem.getName()))
                             newItem.setUnit(pantry.get(index).getUnit());
@@ -114,7 +113,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         ll_item.removeAllViewsInLayout();
         for(int i = 0; i < items.size(); i++) {
             TextView tv = new TextView(this);
-            tv.setText(items.get(i).getName() + "( " + items.get(i).getQuantity() + " " + items.get(i).getUnit()+ ")");
+            tv.setText(items.get(i).displayDetail());
             tv.setTextSize(24);
             tv.setId(i);
             ll_item.addView(tv);

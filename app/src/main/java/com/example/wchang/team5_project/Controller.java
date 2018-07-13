@@ -52,6 +52,10 @@ public class Controller implements Serializable {
         }
     }
 
+    void deleteRecipe(int index) {
+        model.recipes.remove(index);
+    }
+
     void addRecipe(Recipe newRecipe){
         model.addRecipe(newRecipe);
     }
