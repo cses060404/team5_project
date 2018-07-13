@@ -42,6 +42,16 @@ public class Controller implements Serializable {
         model.pantry.add(newItem);
     }
 
+    void deleteItem(FoodItem oldItem){
+        for(int i = 0; i < model.pantry.size(); i++) {
+            // if it is add the quantity values
+            if(model.pantry.get(i).name.equals(oldItem.name)){
+                model.pantry.remove(model.pantry.get(i));
+                return;
+            }
+        }
+    }
+
     void addRecipe(Recipe newRecipe){
         model.addRecipe(newRecipe);
     }

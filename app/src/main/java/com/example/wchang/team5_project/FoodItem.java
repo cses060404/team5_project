@@ -43,4 +43,5 @@ public class FoodItem {
     public String toString(){
         return this.name + " " + this.quantity + this.unit;
     }
+    public String displayDetail() {return name + " (" + quantity + " " + unit + ")";}
 }

@@ -12,15 +12,18 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.List;
+import java.util.Vector;
+
+import static com.example.wchang.team5_project.MainActivity.controller;
 public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.MyViewHolder>{
     private LayoutInflater inflater;
-    //List<Information> data = Collection
+    Vector<Recipe> data = controller.getRecipes();
 
-    public ShoppingAdapter(Context context) {
+    public ShoppingAdapter(Context context, Vector<Recipe> data) {
         inflater = LayoutInflater.from(context);
-
+        this.data = data;
     }
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -32,6 +35,8 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
+        holder.title.setText("haha");
+      //  holder.icon.setImageResource();
     }
 
     @Override
