@@ -11,8 +11,11 @@ package com.example.wchang.team5_project;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
+        import android.widget.AdapterView;
         import android.widget.LinearLayout;
         import android.widget.TextView;
+
+        import com.google.gson.Gson;
 
         import java.util.ArrayList;
         import java.util.Vector;
@@ -33,6 +36,18 @@ public class ShoppingFragment extends Fragment {
         adapter = new ShoppingAdapter(getActivity(), getData());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+       /* recyclerView.setOnClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), DisplayRecipeActivity.class);
+                Gson gson = new Gson();
+                String json = gson.toJson(recipes.get(position));
+                intent.putExtra("recipe", json);
+                intent.putExtra("position", position);
+                startActivity(intent);
+            }
+        });*/
 
         return view;
     }
