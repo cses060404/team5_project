@@ -11,8 +11,11 @@ package com.example.wchang.team5_project;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
+        import android.widget.AdapterView;
         import android.widget.LinearLayout;
         import android.widget.TextView;
+
+        import com.google.gson.Gson;
 
         import java.util.ArrayList;
         import java.util.Vector;
@@ -20,7 +23,7 @@ package com.example.wchang.team5_project;
 public class ShoppingFragment extends Fragment {
 
     private RecyclerView recyclerView;
- //   private Vector<Recipe> recipes;
+    private Vector<Recipe> recipes;
     private ShoppingAdapter adapter;
 
     @Nullable
@@ -33,6 +36,15 @@ public class ShoppingFragment extends Fragment {
         adapter = new ShoppingAdapter(getActivity(), getData());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+     /*   recyclerView.setOnClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                for
+                recipes.get(position)
+            }
+        });*/
+
 
         return view;
     }
@@ -48,8 +60,10 @@ public class ShoppingFragment extends Fragment {
             current.name = titles[i];
             data.add(current);
         }*/
-
        return data;
     }
 
+    public void setData(){
+        recipes = getData();
+    }
 }

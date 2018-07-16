@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Vector;
 
 import static com.example.wchang.team5_project.MainActivity.controller;
+
 public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.MyViewHolder>{
     private LayoutInflater inflater;
     Vector<Recipe> data;
@@ -38,6 +39,7 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             Recipe current = data.get(position);
         holder.title.setText(current.getName());
+        //holder.set
       //  holder.icon.setImageResource();
     }
 
@@ -55,4 +57,5 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.MyView
             //icon = (ImageView) itemView.findViewById(R.id.listIcon);
         }
     }
+   // public void onCl
 }
