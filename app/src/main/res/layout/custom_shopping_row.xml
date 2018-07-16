@@ -16,13 +16,16 @@
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="15dp"
-        android:src="@drawable/apples" />
+        android:src="@drawable/apples"
+        android:background="?android:attr/selectableItemBackground"/>
 
     <TextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/listText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="30dp"
+        android:background="?android:attr/selectableItemBackground"
         android:text="Dummy Text" />
 </LinearLayout>

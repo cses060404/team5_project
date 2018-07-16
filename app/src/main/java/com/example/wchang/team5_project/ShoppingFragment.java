@@ -23,7 +23,7 @@ package com.example.wchang.team5_project;
 public class ShoppingFragment extends Fragment {
 
     private RecyclerView recyclerView;
- //   private Vector<Recipe> recipes;
+    private Vector<Recipe> recipes;
     private ShoppingAdapter adapter;
 
     @Nullable
@@ -36,18 +36,15 @@ public class ShoppingFragment extends Fragment {
         adapter = new ShoppingAdapter(getActivity(), getData());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+     /*   recyclerView.setOnClickListener(new AdapterView.OnItemClickListener(){
 
-       /* recyclerView.setOnClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), DisplayRecipeActivity.class);
-                Gson gson = new Gson();
-                String json = gson.toJson(recipes.get(position));
-                intent.putExtra("recipe", json);
-                intent.putExtra("position", position);
-                startActivity(intent);
+                for
+                recipes.get(position)
             }
         });*/
+
 
         return view;
     }
@@ -63,8 +60,10 @@ public class ShoppingFragment extends Fragment {
             current.name = titles[i];
             data.add(current);
         }*/
-
        return data;
     }
 
+    public void setData(){
+        recipes = getData();
+    }
 }
