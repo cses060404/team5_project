@@ -8,7 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import org.w3c.dom.Text;
 
@@ -39,8 +42,7 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             Recipe current = data.get(position);
         holder.title.setText(current.getName());
-        //holder.set
-      //  holder.icon.setImageResource();
+        holder.desc.setText(current.getDirections().get(0));
     }
 
     @Override
@@ -50,12 +52,14 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.MyView
 
     class MyViewHolder extends RecyclerView.ViewHolder{
         TextView title;
+        TextView desc;
         ImageView icon;
         public MyViewHolder(View itemView) {
             super(itemView);
             title = (TextView)itemView.findViewById(R.id.listText);
+            desc = (TextView)itemView.findViewById(R.id.textView);
             //icon = (ImageView) itemView.findViewById(R.id.listIcon);
         }
     }
-   // public void onCl
+
 }
