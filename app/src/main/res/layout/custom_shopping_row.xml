@@ -27,7 +27,7 @@
 
     <TextView
         android:id="@+id/listText"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginBottom="8dp"
