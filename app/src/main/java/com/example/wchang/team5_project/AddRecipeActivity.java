@@ -126,6 +126,7 @@ public class AddRecipeActivity extends AppCompatActivity {
                     FoodItem newItem = new FoodItem();
                     newItem.setName(data.getStringExtra("selectedItem"));
                     newItem.setQuantity(data.getStringExtra("selectedItemQuantity"));
+                    newItem.setUnit("");
 
                     Vector<FoodItem> pantry = MainActivity.controller.getPantry();
                     int index;

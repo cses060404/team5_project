@@ -2,7 +2,9 @@ package com.example.wchang.team5_project;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -16,11 +18,13 @@ public class AsyncLoadItem extends AsyncTask<Void, Void, String> {
 
     private Barcode barcode;
     private Activity activity;
+    private RetrievedData result;
 
 
-    public AsyncLoadItem(Barcode barcode, Activity activity) {
+    public AsyncLoadItem(Barcode barcode, Activity activity, RetrievedData data) {
         this.barcode = barcode;
         this.activity = activity;
+        result = data;
     }
 
     @Override
@@ -28,7 +32,7 @@ public class AsyncLoadItem extends AsyncTask<Void, Void, String> {
 
         try {
             //this is a sample api
-            String s = "https://api.barcodelookup.com/v2/products?barcode=9780140157376&formatted=y&key=tk1qu2huudl9znmbr894o1cr9gc1yy";
+            String s = "https://api.nutritionix.com/v1_1/item?upc=" + barcode.getContent() + "&appId=72991a57&appKey=483a7a789931c3da312222b79ca986c3";
             URL url = new URL(s);
 
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -53,7 +57,7 @@ public class AsyncLoadItem extends AsyncTask<Void, Void, String> {
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
-        return "Something Went Wrong!";
+        return null;
     }
 
     @Override
@@ -64,8 +68,22 @@ public class AsyncLoadItem extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        Gson gson = new Gson();
-        Toast.makeText(activity, "Loading Completed!", Toast.LENGTH_SHORT).show();
-        Toast.makeText(activity, s, Toast.LENGTH_LONG).show();
+        if(s != null) {
+            Gson gson = new Gson();
+            result = gson.fromJson(s, RetrievedData.class);
+            Toast.makeText(activity, "Loading Completed!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, result.getItemName(), Toast.LENGTH_LONG).show();
+
+        /*
+        Intent intent = new Intent(activity, DisplayResultActivity.class);
+        intent.putExtra("result", s);
+        activity.startActivity(intent);
+        */
+
+
+            ((TextView) activity.findViewById(R.id.name)).setText(result.getItemName());
+        } else {
+            Toast.makeText(activity, "Sorry, we cannot find the data from our database!", Toast.LENGTH_LONG).show();
+        }
     }
 }

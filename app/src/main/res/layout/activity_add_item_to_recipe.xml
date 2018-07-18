@@ -20,6 +20,28 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="32dp"
+        android:text="OR"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView_name" />
+
+    <EditText
+        android:id="@+id/editText_name"
+        android:layout_width="244sp"
+        android:layout_height="45dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
+        android:textSize="15sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/textView"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@id/spinner_item" />
+
+
+    <TextView
         android:id="@+id/textView_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,18 +68,18 @@
         android:id="@+id/textView_quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_item_quantity"
-        app:layout_constraintTop_toBottomOf="@id/textView_name"
-        android:layout_marginTop="50dp"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"
-        android:textSize="18sp"/>
+        android:layout_marginTop="40dp"
+        android:text="@string/add_item_quantity"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
         android:id="@+id/editText_quantity"
         android:layout_width="50sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:inputType="number"
         app:layout_constraintBaseline_toBaselineOf="@id/textView_quantity"
         app:layout_constraintStart_toEndOf="@id/textView_quantity" />

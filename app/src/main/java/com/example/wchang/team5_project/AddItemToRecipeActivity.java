@@ -5,11 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.util.Vector;
 
@@ -20,6 +23,9 @@ public class AddItemToRecipeActivity extends AppCompatActivity {
     private Spinner s_item;
     private Vector<FoodItem> items;
     private EditText et_quantity;
+    private EditText et_name;
+    private boolean isModifiedPage;
+    private FoodItem passedItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +35,39 @@ public class AddItemToRecipeActivity extends AppCompatActivity {
         s_item = findViewById(R.id.spinner_item);
         items = MainActivity.controller.getPantry();
         et_quantity = findViewById(R.id.editText_quantity);
+        et_name = findViewById(R.id.editText_name);
 
+        isModifiedPage = (getIntent().getExtras() != null);
+        if(isModifiedPage) {
+            String json = getIntent().getExtras().getString("item");
+            Gson gson = new Gson();
+            passedItem = gson.fromJson(json, FoodItem.class);
+            et_name.setText(passedItem.getName());
+            et_quantity.setText(Float.toString(passedItem.getQuantity()));
+
+            ((Button)findViewById(R.id.button_add)).setText("SAVE ITEM");
+            ((Button)findViewById(R.id.button_add)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    addItemBtn(v);
+                }
+            });
+            ((Button)findViewById(R.id.button_cancel)).setText("DELETE ITEM");
+            ((Button)findViewById(R.id.button_cancel)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        }
 
         updateSpinner();
     }
 
     public boolean validateForm() {
-        if(s_item.getSelectedItem().toString().matches("Select Item")) {
-            Toast.makeText(this, "Please Select An Item!", LENGTH_SHORT).show();
+
+        if(s_item.getSelectedItem().toString().matches("Select Item") && et_name.getText().toString().equals("")) {
+            Toast.makeText(this, "Please Select An Item Or Enter An Item!", LENGTH_SHORT).show();
             s_item.requestFocus();
             return false;
         }
@@ -65,7 +96,12 @@ public class AddItemToRecipeActivity extends AppCompatActivity {
 
     public void addItemBtn(View view) {
         if(validateForm()) {
-            String selectedItem = s_item.getSelectedItem().toString();
+            String selectedItem;
+            if(et_name.getText().toString().equals("")) {
+                selectedItem = s_item.getSelectedItem().toString();
+            } else {
+                selectedItem = et_name.getText().toString();
+            }
             String quantity = et_quantity.getText().toString();
             Intent intent = new Intent();
             intent.putExtra("selectedItem", selectedItem);

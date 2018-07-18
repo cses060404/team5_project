@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity{
     public static Controller controller;
     public final String DATA = "Model_File";
     private Barcode barcode;
+    private RetrievedData data;
 
     public void loadData() {
         SharedPreferences prefs = getSharedPreferences(DATA, MODE_PRIVATE);
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
+
     public void scanningBtn(View v) {
         //start scanning
         if(v.getId() == R.id.scanBtn){
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity{
             scanIntegrator.initiateScan();
         }
     }
+
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
@@ -99,11 +102,9 @@ public class MainActivity extends AppCompatActivity{
             barcode.setContent(scanningResult.getContents());
             barcode.setFormat(scanningResult.getFormatName());
 
-            Toast toast = Toast.makeText(getApplicationContext(), "Barcode Content: " + barcode.getContent(), Toast.LENGTH_SHORT);
-            toast.show();
-
             //Trying to get data from api
-            AsyncLoadItem loadItem = new AsyncLoadItem(barcode, this);
+            data = new RetrievedData();
+            AsyncLoadItem loadItem = new AsyncLoadItem(barcode, this, data);
             loadItem.execute();
             //item = api.getItem();
 
@@ -116,6 +117,7 @@ public class MainActivity extends AppCompatActivity{
             toast.show();
         }
     }
+
 
     protected void onPause() {
         super.onPause();
@@ -213,4 +215,12 @@ public class MainActivity extends AppCompatActivity{
             return true;
         }
     };
+
+    /*
+    public void asyncTestingBtn(View view) {
+        data = new RetrievedData();
+        AsyncLoadItem a = new AsyncLoadItem(barcode, this, data);
+        a.execute();
+    }
+    */
 }
