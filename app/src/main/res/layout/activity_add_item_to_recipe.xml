@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/extView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -36,8 +36,8 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="16dp"
         android:textSize="15sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/textView"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintBaseline_toBaselineOf="@id/extView"
+        app:layout_constraintStart_toEndOf="@+id/extView"
         app:layout_constraintTop_toBottomOf="@id/spinner_item" />
 
 
@@ -73,7 +73,7 @@
         android:text="@string/add_item_quantity"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/extView" />
 
     <EditText
         android:id="@+id/editText_quantity"

@@ -62,7 +62,7 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.MyView
 
             // These two lines of codes connects the view holder.
             title = (TextView)itemView.findViewById(R.id.listText);
-            desc = (TextView)itemView.findViewById(R.id.textView);
+            desc = (TextView)itemView.findViewById(R.id.extView);
 
             //This line is commented because we only have one picture to display. However,
             // if the user have more pictures, we can use this line of code.

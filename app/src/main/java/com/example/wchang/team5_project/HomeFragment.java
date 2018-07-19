@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.AdapterView;
+import android.content.Intent;
 
 import static com.example.wchang.team5_project.MainActivity.controller;
 
@@ -28,18 +30,37 @@ public class HomeFragment extends Fragment {
         readSharedPreferences();
         listView = (ListView)view.findViewById(R.id.foodItemListView);
 
-        adapter = new ArrayAdapter<FoodItem>(getContext(), android.R.layout.simple_list_item_1, controller.getPantry());
-        listView.setAdapter(adapter);
 
+        updateView();
 
 
         return view;
+    }
+
+    public void updateView(){
+        adapter = new ArrayAdapter<FoodItem>(getContext(), android.R.layout.simple_list_item_1, controller.getPantry());
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), DisplayItemActivity.class);
+                intent.putExtra("position", position);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
     }
 
     @Override
     public void onPause() {
         super.onPause();
         writeSharedPreferences();
+
     }
 
     public void writeSharedPreferences(){
