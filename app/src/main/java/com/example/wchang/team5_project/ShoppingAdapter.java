@@ -40,7 +40,10 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-            Recipe current = data.get(position);
+        //This will get us the recipe we want from the recipe vector.
+        Recipe current = data.get(position);
+
+        //This will get the title and desc.
         holder.title.setText(current.getName());
         holder.desc.setText(current.getDirections().get(0));
     }
@@ -56,10 +59,17 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.MyView
         ImageView icon;
         public MyViewHolder(View itemView) {
             super(itemView);
+
+            // These two lines of codes connects the view holder.
             title = (TextView)itemView.findViewById(R.id.listText);
             desc = (TextView)itemView.findViewById(R.id.textView);
+
+            //This line is commented because we only have one picture to display. However,
+            // if the user have more pictures, we can use this line of code.
             //icon = (ImageView) itemView.findViewById(R.id.listIcon);
         }
     }
+
+
 
 }
