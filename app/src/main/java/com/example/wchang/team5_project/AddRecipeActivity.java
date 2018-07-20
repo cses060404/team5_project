@@ -19,6 +19,7 @@ import java.util.Vector;
 public class AddRecipeActivity extends AppCompatActivity {
 
     public static final int REQUEST_CODE = 1001;
+    public static final int REQUEST_CODE_2 = 1010;
     private EditText et_name;
     private LinearLayout ll_item;
     private EditText et_direction;
@@ -159,6 +160,23 @@ public class AddRecipeActivity extends AppCompatActivity {
 
                     updateItemView();
                 }
+
+            case REQUEST_CODE_2:
+                if(resultCode == Activity.RESULT_OK) {
+                    if(data.getExtras().getBoolean("isDeleted")) {
+                        items.remove(data.getExtras().getInt("index"));
+                    }
+                    else {
+                        int index = data.getExtras().getInt("index");
+                        String name = data.getExtras().getString("selectedItem");
+                        String quantity = data.getExtras().getString("selectedItemQuantity");
+
+                        items.get(index).setName(name);
+                        items.get(index).setQuantity(quantity);
+                    }
+
+                    updateItemView();
+                }
         }
     }
 
@@ -170,6 +188,22 @@ public class AddRecipeActivity extends AppCompatActivity {
             tv.setText(items.get(i).displayDetail());
             tv.setTextSize(24);
             tv.setId(i);
+
+            final int finalI = i;
+            tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), AddItemToRecipeActivity.class);
+
+                    Gson gson = new Gson();
+                    String json = gson.toJson(items.get(finalI));
+
+                    intent.putExtra("item", json);
+                    intent.putExtra("index", finalI);
+
+                    startActivityForResult(intent, REQUEST_CODE_2);
+                }
+            });
             ll_item.addView(tv);
         }
     }
