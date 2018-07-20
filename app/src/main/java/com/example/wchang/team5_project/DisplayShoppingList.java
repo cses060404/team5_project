@@ -14,6 +14,7 @@ public class DisplayShoppingList extends AppCompatActivity {
 private Vector <FoodItem> rc;
 public String shoppingList;
 public TextView tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +22,6 @@ public TextView tv;
 
         // This connects the local TextView variable to the shoppingListView.
         tv = findViewById(R.id.shoppingListView);
-
         //The function returns the position of the recipe being selected in an int value.
         int p = ShoppingFragment.getPosition();
 
@@ -31,7 +31,6 @@ public TextView tv;
         //It passes the recipe to the makeList Function and return the items needed as a Vector and assign it to the rc vector.
         rc = MainActivity.controller.makeList(data);
         shoppingList = "";
-
         //This for loop go through each item in the FoodItem Vector and make the string list for display.
         for (int i = 0; i < rc.size(); i++)
         {
