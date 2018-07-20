@@ -26,6 +26,7 @@ public class AddItemToRecipeActivity extends AppCompatActivity {
     private EditText et_name;
     private boolean isModifiedPage;  //Allow the code to know if it is adding page or editing page
     private FoodItem passedItem;
+    private int index;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,20 @@ public class AddItemToRecipeActivity extends AppCompatActivity {
         items = MainActivity.controller.getPantry();
         et_quantity = findViewById(R.id.editText_quantity);
         et_name = findViewById(R.id.editText_name);
+
+        isModifiedPage = (getIntent().getExtras() != null);
+        if(isModifiedPage) {
+            Gson gson = new Gson();
+            passedItem = gson.fromJson(getIntent().getExtras().getString("item"), FoodItem.class);
+            index = getIntent().getExtras().getInt("index");
+
+            et_name.setText(passedItem.getName());
+            et_quantity.setText(Float.toString(passedItem.getQuantity()));
+
+            ((Button)findViewById(R.id.button_add)).setText("SAVE ITEM");
+            ((Button)findViewById(R.id.button_cancel)).setText("DELETE");
+            ((TextView)findViewById(R.id.textView_add_item)).setText("SAVE ITEM");
+        }
 
         updateSpinner();
     }
@@ -74,8 +89,9 @@ public class AddItemToRecipeActivity extends AppCompatActivity {
     //Add Item button to add item's information into new recipe page
     public void addItemBtn(View view) {
         if(validateForm()) {
+
             String selectedItem;
-            if(et_name.getText().toString().equals("")) {
+            if (et_name.getText().toString().equals("")) {
                 selectedItem = s_item.getSelectedItem().toString();
             } else {
                 selectedItem = et_name.getText().toString();
@@ -84,12 +100,24 @@ public class AddItemToRecipeActivity extends AppCompatActivity {
             Intent intent = new Intent();
             intent.putExtra("selectedItem", selectedItem);
             intent.putExtra("selectedItemQuantity", quantity);
-            setResult(RESULT_OK, intent);
+            if(isModifiedPage) {
+                intent.putExtra("index", index);
+                setResult(RESULT_OK, intent);
+            }
+            else
+                setResult(RESULT_OK, intent);
+
             finish();
         }
     }
 
     public void cancelBtn(View view) {
+        if(isModifiedPage) {
+            Intent intent = new Intent();
+            intent.putExtra("isDeleted", true);
+            intent.putExtra("index", index);
+            setResult(RESULT_OK, intent);
+        }
         onBackPressed();
     }
 }
