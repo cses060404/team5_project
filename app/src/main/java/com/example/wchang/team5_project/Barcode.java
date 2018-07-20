@@ -1,6 +1,8 @@
 package com.example.wchang.team5_project;
 
-//This class is barcode object template
+/**
+ *  This class is barcode object template
+ */
 public class Barcode {
     private String content;
     private String format;
