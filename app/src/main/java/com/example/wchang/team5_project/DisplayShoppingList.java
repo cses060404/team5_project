@@ -42,7 +42,7 @@ public TextView tv;
         if (shoppingList != "")
         {
             //This setText sets the string to the text field in the view.
-            tv.setText(shoppingList);
+            tv.setText("You need: \n" + shoppingList);
         }
         else
             //This setText sets the string to the text field in the view.
