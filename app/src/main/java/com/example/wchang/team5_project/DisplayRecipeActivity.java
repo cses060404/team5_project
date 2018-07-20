@@ -15,7 +15,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 /**
- * Displays a recipe
+ * public class DisplayRecipeActivity
+ *      Start the new page which can display the selected recipe information
  */
 public class DisplayRecipeActivity extends AppCompatActivity {
 
@@ -44,7 +45,10 @@ public class DisplayRecipeActivity extends AppCompatActivity {
         updateView();
     }
 
-    //display the view correctly
+    /**
+     * public void updateView()
+     *      display the view correctly
+     */
     public void updateView() {
         recipe = MainActivity.controller.getRecipes().get(index);
         tv_name.setText(recipe.getName());
@@ -74,7 +78,11 @@ public class DisplayRecipeActivity extends AppCompatActivity {
         updateView();
     }
 
-    //Start the activity to edit the recipe
+    /**\
+     * public void editBtn
+     * @param view
+     *     Start the activity to edit the recipe
+     */
     public void editBtn(View view) {
         Intent intent = new Intent(this, AddRecipeActivity.class);
         //sending the data with json string
@@ -85,7 +93,11 @@ public class DisplayRecipeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //delete the selected recipe
+    /**
+     * public void deleteBtn
+     * @param view
+     *     delete the selected recipe
+     */
     public void deleteBtn(View view) {
         MainActivity.controller.deleteRecipe(index);
         Toast.makeText(this, "Recipe Deleted!", Toast.LENGTH_LONG).show();
