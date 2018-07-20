@@ -31,7 +31,6 @@ import static com.example.wchang.team5_project.MainActivity.controller;
  * functions to control the needed action.
  */
 public class RecipeFragment extends Fragment {
-
     private ListView lv_recipe;
     private Vector<Recipe> recipes;
     private ArrayAdapter<Recipe> adapter;
