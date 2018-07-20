@@ -160,7 +160,7 @@ public class AddRecipeActivity extends AppCompatActivity {
             case REQUEST_CODE:
                 if(resultCode == Activity.RESULT_OK) {
                     FoodItem newItem = new FoodItem();
-                    newItem.setName(data.getStringExtra("selectedItem").toUpperCase());
+                    newItem.setName(data.getStringExtra("selectedItem").trim().toUpperCase());
                     newItem.setQuantity(data.getStringExtra("selectedItemQuantity"));
                     newItem.setUnit("");
 
