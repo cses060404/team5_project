@@ -16,6 +16,11 @@ import com.google.gson.Gson;
 
 import java.util.Vector;
 
+/**
+ * Class AddRecipeActivity:
+ * The class to start the page which can create new recipe,
+ * and provides the needed functions.
+ */
 public class AddRecipeActivity extends AppCompatActivity {
 
     public static final int REQUEST_CODE = 1001;
@@ -60,14 +65,23 @@ public class AddRecipeActivity extends AppCompatActivity {
 
     }
 
-    //Start the other activity to add item into new recipe
+    /**
+     * function addItemBtn void
+     * @param view
+     *     Start the other activity to add item into new recipe
+     */
+
     public void addItemBtn(View view) {
         Intent intent = new Intent(this, AddItemToRecipeActivity.class);
         startActivityForResult(intent, REQUEST_CODE);
 
     }
 
-    //Validate the adding or editing page if the text field is empty or not
+    /**
+     * function validateForm boolean
+     * @return
+     *     Validate the adding or editing page if the text field is empty or not
+     */
     public boolean validateForm() {
         if(et_name.getText().toString().matches("")) {
             Toast.makeText(this, "Please Enter The Recipe Name!", Toast.LENGTH_SHORT).show();
@@ -93,7 +107,11 @@ public class AddRecipeActivity extends AppCompatActivity {
         }
     }
 
-    //Save the adding or editing page information into recipes array
+    /**
+     * function addRecipeBtn void
+     * @param view
+     *     Save the adding or editing page information into recipes array
+     */
     public void addRecipeBtn(View view) {
         if(validateForm()) {
             String name = et_name.getText().toString();
@@ -128,7 +146,13 @@ public class AddRecipeActivity extends AppCompatActivity {
         updateItemView();
     }
 
-    //Retrieve the data from next activity and add them into the item of the new recipe
+    /**
+     * function onActivityResult void
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     *     Retrieve the data from next activity and add them into the item of the new recipe
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -136,7 +160,7 @@ public class AddRecipeActivity extends AppCompatActivity {
             case REQUEST_CODE:
                 if(resultCode == Activity.RESULT_OK) {
                     FoodItem newItem = new FoodItem();
-                    newItem.setName(data.getStringExtra("selectedItem"));
+                    newItem.setName(data.getStringExtra("selectedItem").toUpperCase());
                     newItem.setQuantity(data.getStringExtra("selectedItemQuantity"));
                     newItem.setUnit("");
 
@@ -180,7 +204,10 @@ public class AddRecipeActivity extends AppCompatActivity {
         }
     }
 
-    //Display the items list correctly
+    /**
+     * function updateItemView void
+     *     Display the items list correctly
+     */
     public void updateItemView() {
         ll_item.removeAllViewsInLayout();
         for(int i = 0; i < items.size(); i++) {

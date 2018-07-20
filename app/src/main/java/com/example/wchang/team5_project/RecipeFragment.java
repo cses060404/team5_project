@@ -25,6 +25,11 @@ import java.util.Vector;
 
 import static com.example.wchang.team5_project.MainActivity.controller;
 
+/**
+ * Class: RecipeFragment
+ * This class for displaying the needed information on screen, and some
+ * functions to control the needed action.
+ */
 public class RecipeFragment extends Fragment {
 
     private ListView lv_recipe;
@@ -44,7 +49,10 @@ public class RecipeFragment extends Fragment {
         return view;
     }
 
-    //update the list view to display the recipes
+    /**
+     * function updateView() void:
+     *     update the list view to display the recipes
+     */
     public void updateView() {
         recipes = MainActivity.controller.getRecipes();
         adapter = new ArrayAdapter<Recipe>(getContext(), android.R.layout.simple_list_item_1, controller.getRecipes());

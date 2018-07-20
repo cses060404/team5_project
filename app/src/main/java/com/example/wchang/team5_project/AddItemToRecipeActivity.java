@@ -39,6 +39,7 @@ public class AddItemToRecipeActivity extends AppCompatActivity {
         et_name = findViewById(R.id.editText_name);
 
         isModifiedPage = (getIntent().getExtras() != null);
+        //do some needed changes in the page if the page is editing page
         if(isModifiedPage) {
             Gson gson = new Gson();
             passedItem = gson.fromJson(getIntent().getExtras().getString("item"), FoodItem.class);
@@ -55,7 +56,11 @@ public class AddItemToRecipeActivity extends AppCompatActivity {
         updateSpinner();
     }
 
-    //Validate the form, make sure there is no empty text field
+    /**
+     * function validateForm boolean
+     * @return
+     *     Validate the form, make sure there is no empty text field
+     */
     public boolean validateForm() {
         if(s_item.getSelectedItem().toString().matches("Select Item") && et_name.getText().toString().equals("")) {
             Toast.makeText(this, "Please Select An Item Or Enter An Item!", LENGTH_SHORT).show();
@@ -73,7 +78,10 @@ public class AddItemToRecipeActivity extends AppCompatActivity {
         }
     }
 
-    //Handle and display the drop down list to display the items
+    /**
+     * public void updateSpinner()
+     *     Handle and display the drop down list to display the items
+     */
     public void updateSpinner() {
         Vector<String> list = new Vector<String>();
         list.add("Select Item");
@@ -86,7 +94,11 @@ public class AddItemToRecipeActivity extends AppCompatActivity {
         s_item.setAdapter(adapter);
     }
 
-    //Add Item button to add item's information into new recipe page
+    /**
+     * public void addItemBtn()
+     *   Add Item button to add item's information into new recipe page
+     * @param view
+     */
     public void addItemBtn(View view) {
         if(validateForm()) {
 
