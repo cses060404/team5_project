@@ -139,13 +139,24 @@ public class AddRecipeActivity extends AppCompatActivity {
                     newItem.setQuantity(data.getStringExtra("selectedItemQuantity"));
                     newItem.setUnit("");
 
+                    boolean isNewItem = true;
+                    for(int i = 0; i < items.size(); i++) {
+                        if(newItem.getName().equals(items.get(i).getName())) {
+                            isNewItem = false;
+                            items.get(i).setQuantity(items.get(i).getQuantity() + newItem.getQuantity());
+                        }
+                    }
                     Vector<FoodItem> pantry = MainActivity.controller.getPantry();
                     int index;
                     for(index = 0; index < pantry.size(); index++) {
                         if(pantry.get(index).getName().equals(newItem.getName()))
                             newItem.setUnit(pantry.get(index).getUnit());
                     }
-                    items.add(newItem);
+
+                    if(isNewItem) {
+                        items.add(newItem);
+                    }
+
                     updateItemView();
                 }
         }
