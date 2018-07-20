@@ -49,7 +49,7 @@ public class AddItemToRecipeActivity extends AppCompatActivity {
 
             ((Button)findViewById(R.id.button_add)).setText("SAVE ITEM");
             ((Button)findViewById(R.id.button_cancel)).setText("DELETE");
-            ((TextView)findViewById(R.id.textView_add_item)).setText("SAVE ITEM");
+            ((TextView)findViewById(R.id.textView_add_item)).setText("Edit Item");
         }
 
         updateSpinner();

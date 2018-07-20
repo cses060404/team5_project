@@ -142,7 +142,7 @@ public class AddRecipeActivity extends AppCompatActivity {
 
                     boolean isNewItem = true;
                     for(int i = 0; i < items.size(); i++) {
-                        if(newItem.getName().equals(items.get(i).getName())) {
+                        if(newItem.getName().toLowerCase().equals(items.get(i).getName().toLowerCase())) {
                             isNewItem = false;
                             items.get(i).setQuantity(items.get(i).getQuantity() + newItem.getQuantity());
                         }

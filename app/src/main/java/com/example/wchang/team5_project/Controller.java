@@ -37,7 +37,7 @@ public class Controller implements Serializable {
         // look to see if item is already in the vector
         for(int i = 0; i < model.pantry.size(); i++) {
             // if it is add the quantity values
-            if(model.pantry.get(i).name.equals(newItem.name)){
+            if(model.pantry.get(i).name.toLowerCase().equals(newItem.name.toLowerCase())){
                 model.pantry.get(i).quantity += newItem.quantity;
                 return;
             }
