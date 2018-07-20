@@ -166,7 +166,7 @@ public class AddRecipeActivity extends AppCompatActivity {
 
                     boolean isNewItem = true;
                     for(int i = 0; i < items.size(); i++) {
-                        if(newItem.getName().toLowerCase().equals(items.get(i).getName().toLowerCase())) {
+                        if(newItem.getName().toUpperCase().equals(items.get(i).getName().toUpperCase())) {
                             isNewItem = false;
                             items.get(i).setQuantity(items.get(i).getQuantity() + newItem.getQuantity());
                         }
@@ -174,7 +174,7 @@ public class AddRecipeActivity extends AppCompatActivity {
                     Vector<FoodItem> pantry = MainActivity.controller.getPantry();
                     int index;
                     for(index = 0; index < pantry.size(); index++) {
-                        if(pantry.get(index).getName().equals(newItem.getName()))
+                        if(pantry.get(index).getName().toUpperCase().equals(newItem.getName().toUpperCase()))
                             newItem.setUnit(pantry.get(index).getUnit());
                     }
 
@@ -184,6 +184,7 @@ public class AddRecipeActivity extends AppCompatActivity {
 
                     updateItemView();
                 }
+                break;
 
             case REQUEST_CODE_2:
                 if(resultCode == Activity.RESULT_OK) {
@@ -201,6 +202,7 @@ public class AddRecipeActivity extends AppCompatActivity {
 
                     updateItemView();
                 }
+                break;
         }
     }
 
