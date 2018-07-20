@@ -113,23 +113,31 @@ public class Controller implements Serializable {
     */
     public Vector<FoodItem> makeList(Recipe usingRecipe){
         Vector<FoodItem> needed = new Vector<>();
-
-            for(int j = 0; j < usingRecipe.getIngredients().size(); j++) {
-                for(int k = 0; k < model.pantry.size(); k++) {
-                // j is the recipe FoodItem index
-                // k is the pantry FoodItem index
-                // compare all J's to K's. if not found add to needed list
-                    if (model.pantry.get(k).name.equals(usingRecipe.getIngredients().get(j).name) ) {
+        if(model.pantry.size() != 0) {
+            for (int j = 0; j < usingRecipe.getIngredients().size(); j++) {
+                for (int k = 0; k < model.pantry.size(); k++) {
+                    // j is the recipe FoodItem index
+                    // k is the pantry FoodItem index
+                    // compare all J's to K's. if not found add to needed list
+                    if (model.pantry.get(k).name.equals(usingRecipe.getIngredients().get(j).name)) {
                         //create a new FoodItem with the needed quantity
                         FoodItem newFoodItem = new FoodItem(model.pantry.get(k).name, (usingRecipe.getIngredients().get(j).quantity - model.pantry.get(k).quantity), model.pantry.get(k).unit);
-                        if(newFoodItem.quantity > 0)
+                        if (newFoodItem.quantity > 0)
                             needed.add(newFoodItem);
                     } else {
                         FoodItem newFoodItem = new FoodItem(usingRecipe.getIngredients().get(j).name, usingRecipe.getIngredients().get(j).quantity, usingRecipe.getIngredients().get(j).unit);
                         needed.add(newFoodItem);
                     }
+
                 }
+
             }
+        }
+        else  {
+            for (int j = 0; j < usingRecipe.getIngredients().size(); j++) {
+            FoodItem newFoodItem = new FoodItem(usingRecipe.getIngredients().get(j).name, usingRecipe.getIngredients().get(j).quantity, usingRecipe.getIngredients().get(j).unit);
+            needed.add(newFoodItem);}
+        }
         return needed;
     }
 

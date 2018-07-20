@@ -2,6 +2,7 @@ package com.example.wchang.team5_project;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.TextView;
@@ -40,5 +41,10 @@ public class DisplayItemActivity extends AppCompatActivity {
         MainActivity.controller.deleteItem(oldFoodItem);
         Toast.makeText(this, "Item Deleted!", Toast.LENGTH_LONG).show();
         finish();
+    }
+
+    public void onPause(){
+        super.onPause();
+        MainActivity.controller.getPantry().get(index).name = item_name.getText().toString().toUpperCase();
     }
 }
