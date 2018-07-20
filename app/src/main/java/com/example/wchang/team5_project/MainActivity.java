@@ -24,6 +24,10 @@ import com.google.gson.Gson;
 import google.zxing.integration.android.IntentIntegrator;
 import google.zxing.integration.android.IntentResult;
 
+/**
+ * Contains the main methods for updating/deleting data, starting activities for new
+ * recipes, starting the scanner, and receiving results from the scanner.
+ */
 public class MainActivity extends AppCompatActivity{
 
     //the main database
