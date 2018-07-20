@@ -6,7 +6,10 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
-
+/**
+ * This function is the listener for the recyclerView in the ShoppingFragment.
+ * It would handle clicks or long clicks.
+ */
 public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
     private OnItemClickListener mListener;
 

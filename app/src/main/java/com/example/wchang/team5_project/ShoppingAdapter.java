@@ -39,6 +39,9 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.MyView
     }
 
     @Override
+    /**
+     * This onBindViewHolder function would bind our view and holder together.
+     */
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         //This will get us the recipe we want from the recipe vector.
         Recipe current = data.get(position);

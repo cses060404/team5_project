@@ -21,8 +21,12 @@ public class ShoppingFragment extends Fragment {
     private ShoppingAdapter adapter;
     public ProgressBar progressbar;
     private static int position;
+
     @Nullable
     @Override
+    /**
+     * The onCreateView would setup the environment and it also has a instance of the item touch listener for the recyclerView.
+     */
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Here it creates a new view and set up the environment
         View view = inflater.inflate(R.layout.fragment_shopping, container, false);
@@ -34,11 +38,11 @@ public class ShoppingFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        // This is to connect the progressbar and set it to invisible at start point.
+        // This is to connect the progressbar and set it to be invisible at start point.
         progressbar = (ProgressBar) view.findViewById(R.id.progressBar3);
         progressbar.setVisibility(View.GONE);
 
-        //This is the listener to see if any of the items in the recyclerview was clicked.
+        //This is the listener to see if any of the items in the recyclerView was clicked.
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(getContext(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
@@ -51,6 +55,7 @@ public class ShoppingFragment extends Fragment {
                                 startActivity(intent);
                             }
                         };
+                        //When one of the item is being clicked, the progress bar would be activated.
                         progressbar.setVisibility(View.VISIBLE);
                         TimeDelay.postDelayed(content, 1500);
                     }
@@ -82,4 +87,5 @@ public class ShoppingFragment extends Fragment {
     public static int getPosition(){
         return position;
     }
+
 }
