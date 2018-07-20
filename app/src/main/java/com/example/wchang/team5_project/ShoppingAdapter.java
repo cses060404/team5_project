@@ -22,6 +22,9 @@ import java.util.Vector;
 
 import static com.example.wchang.team5_project.MainActivity.controller;
 
+/**
+ * The ShoppingAdapter is to adapt each Receipt into a little view inside the recyclerView.
+ */
 public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.MyViewHolder>{
     private LayoutInflater inflater;
     Vector<Recipe> data;
@@ -51,6 +54,10 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.MyView
         holder.desc.setText(current.getDirections().get(0));
     }
 
+    /**
+     * This getItemCount function would see how many recipes we have and to tell the adapter how many little views to display.
+     * @return an int value.
+     */
     @Override
     public int getItemCount() {
         return data.size();
@@ -72,7 +79,4 @@ public class ShoppingAdapter extends RecyclerView.Adapter<ShoppingAdapter.MyView
             //icon = (ImageView) itemView.findViewById(R.id.listIcon);
         }
     }
-
-
-
 }
