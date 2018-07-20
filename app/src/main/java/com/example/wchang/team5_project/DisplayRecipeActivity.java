@@ -32,6 +32,7 @@ public class DisplayRecipeActivity extends AppCompatActivity {
         ll_items = findViewById(R.id.linearLayout_item);
         tv_direction = findViewById(R.id.textView_direction_contents);
 
+        //convert the json string into object from previews activity
         String json = getIntent().getExtras().getString("recipe");
         Gson gson = new Gson();
         recipe = gson.fromJson(json, Recipe.class);
@@ -40,6 +41,7 @@ public class DisplayRecipeActivity extends AppCompatActivity {
         updateView();
     }
 
+    //display the view correctly
     public void updateView() {
         recipe = MainActivity.controller.getRecipes().get(index);
         tv_name.setText(recipe.getName());
@@ -51,6 +53,9 @@ public class DisplayRecipeActivity extends AppCompatActivity {
             tv.setTextSize(20);
             ll_items.addView(tv);
         }
+
+        //Even though we have an array to store our directions, but we only use one string to store them.
+        //just run the for loop in case
         for(int i = 0; i < recipe.getDirections().size(); i++) {
             TextView tv = new TextView(this);
             tv.setText(recipe.getDirections().get(i));
@@ -66,8 +71,10 @@ public class DisplayRecipeActivity extends AppCompatActivity {
         updateView();
     }
 
+    //Start the activity to edit the recipe
     public void editBtn(View view) {
         Intent intent = new Intent(this, AddRecipeActivity.class);
+        //sending the data with json string
         Gson gson = new Gson();
         String json = gson.toJson(recipe);
         intent.putExtra("recipe", json);
@@ -75,6 +82,7 @@ public class DisplayRecipeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //delete the selected recipe
     public void deleteBtn(View view) {
         MainActivity.controller.deleteRecipe(index);
         Toast.makeText(this, "Recipe Deleted!", Toast.LENGTH_LONG).show();

@@ -25,8 +25,9 @@ public class AddRecipeActivity extends AppCompatActivity {
     private String selectedItem;
     private Vector<FoodItem> items;
     private Recipe recipe;
-    private int index;
-    private boolean isModifiedPage;
+
+    private int index;               //Represent the position of item that is click by previews list page
+    private boolean isModifiedPage;  //Allow the code to know if it is a adding page or editing page
 
 
     @Override
@@ -34,14 +35,18 @@ public class AddRecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
 
+        //assign the variable and layout
         et_name = findViewById(R.id.editText_name);
         ll_item = findViewById(R.id.linearLayout_item);
         et_direction = findViewById(R.id.editText_direction);
         items = new Vector<FoodItem>();
 
         isModifiedPage = (getIntent().getExtras() != null);
+
+        //if it is editing page, change some layout attribute to display the correct page
         if(isModifiedPage) {
             String json = getIntent().getExtras().getString("recipe");
+            //Use JSON to retrieve the object from previews activiy
             Gson gson = new Gson();
             recipe = gson.fromJson(json, Recipe.class);
             index = getIntent().getExtras().getInt("index");
@@ -54,12 +59,14 @@ public class AddRecipeActivity extends AppCompatActivity {
 
     }
 
+    //Start the other activity to add item into new recipe
     public void addItemBtn(View view) {
         Intent intent = new Intent(this, AddItemToRecipeActivity.class);
         startActivityForResult(intent, REQUEST_CODE);
 
     }
 
+    //Validate the adding or editing page if the text field is empty or not
     public boolean validateForm() {
         if(et_name.getText().toString().matches("")) {
             Toast.makeText(this, "Please Enter The Recipe Name!", Toast.LENGTH_SHORT).show();
@@ -85,6 +92,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         }
     }
 
+    //Save the adding or editing page information into recipes array
     public void addRecipeBtn(View view) {
         if(validateForm()) {
             String name = et_name.getText().toString();
@@ -97,6 +105,7 @@ public class AddRecipeActivity extends AppCompatActivity {
                 newRecipe.addFoodItem(items.get(i));
             }
 
+            //do save process if it is editing page
             if (isModifiedPage) {
                 MainActivity.controller.deleteRecipe(index);
                 MainActivity.controller.getRecipes().insertElementAt(newRecipe, index);
@@ -107,6 +116,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         }
     }
 
+    //just finish the activity without other action
     public void cancelBtn(View view) {
         finish();
     }
@@ -117,6 +127,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         updateItemView();
     }
 
+    //Retrieve the data from next activity and add them into the item of the new recipe
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -140,6 +151,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         }
     }
 
+    //Display the items list correctly
     public void updateItemView() {
         ll_item.removeAllViewsInLayout();
         for(int i = 0; i < items.size(); i++) {
