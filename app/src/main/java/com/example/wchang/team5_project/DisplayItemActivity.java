@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.Toast;
 import android.widget.TextView;
 
+/**
+ * Displays the items added onto the recipe
+ */
 public class DisplayItemActivity extends AppCompatActivity {
 
     private FoodItem oldFoodItem;
