@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.stream.Stream;
 
+/**
+ * This encapsulates the notion of a recipe.
+ */
 public class Recipe {
     Vector<FoodItem> ingredients;
     Vector<String> directions;

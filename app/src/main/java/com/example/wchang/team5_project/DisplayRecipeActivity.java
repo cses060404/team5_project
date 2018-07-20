@@ -14,6 +14,9 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Vector;
 
+/**
+ * Displays a recipe
+ */
 public class DisplayRecipeActivity extends AppCompatActivity {
 
     private TextView tv_name;

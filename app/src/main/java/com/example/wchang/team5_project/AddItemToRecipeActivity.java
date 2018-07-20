@@ -18,6 +18,9 @@ import java.util.Vector;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
+/**
+ * Adds food items to a recipe instance.
+ */
 public class AddItemToRecipeActivity extends AppCompatActivity {
 
     private Spinner s_item;

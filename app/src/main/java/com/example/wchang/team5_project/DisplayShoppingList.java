@@ -7,6 +7,9 @@ import android.widget.TextView;
 
 import java.util.Vector;
 
+/**
+ * Displays the shopping list.
+ */
 public class DisplayShoppingList extends AppCompatActivity {
 private Vector <FoodItem> rc;
 public String shoppingList;

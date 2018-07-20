@@ -1,5 +1,8 @@
 package com.example.wchang.team5_project;
 
+/**
+ * Creates the data value for a food item.
+ */
 public class FoodItem {
     String name;
     float quantity;

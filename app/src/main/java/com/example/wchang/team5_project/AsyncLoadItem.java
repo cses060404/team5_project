@@ -14,6 +14,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Loads the food items
+ */
 public class AsyncLoadItem extends AsyncTask<Void, Void, String> {
 
     private Barcode barcode;

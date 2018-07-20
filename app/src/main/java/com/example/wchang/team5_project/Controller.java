@@ -5,6 +5,10 @@ import android.app.Activity;
 import java.io.Serializable;
 import java.util.Vector;
 
+/**
+ * For this app's MVC design, this controller manages the interactions between the View and the
+ * Model.
+ */
 public class Controller implements Serializable {
     Model model;
     Activity mainActivity;

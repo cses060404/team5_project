@@ -16,6 +16,9 @@ import com.google.gson.Gson;
 
 import java.util.Vector;
 
+/**
+ * Adds a recipe of food items to the app database
+ */
 public class AddRecipeActivity extends AppCompatActivity {
 
     public static final int REQUEST_CODE = 1001;

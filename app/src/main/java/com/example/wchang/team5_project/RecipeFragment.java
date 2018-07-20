@@ -25,6 +25,9 @@ import java.util.Vector;
 
 import static com.example.wchang.team5_project.MainActivity.controller;
 
+/**
+ * Creates and manages the recipe fragment.
+ */
 public class RecipeFragment extends Fragment {
 
     private ListView lv_recipe;

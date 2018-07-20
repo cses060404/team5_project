@@ -6,6 +6,9 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+/**
+ * Displays the result(s) of the scanner.
+ */
 public class DisplayResultActivity extends AppCompatActivity {
 
     private RetrievedData result;

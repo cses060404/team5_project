@@ -17,6 +17,9 @@ import android.content.Intent;
 
 import static com.example.wchang.team5_project.MainActivity.controller;
 
+/**
+ * Helps in the implementation for the home page for the app.
+ */
 public class HomeFragment extends Fragment {
     private EditText editName;
     private static String SP_USER_STATUS = "userstatus";
