@@ -24,7 +24,7 @@ public class AddItemToRecipeActivity extends AppCompatActivity {
     private Vector<FoodItem> items;
     private EditText et_quantity;
     private EditText et_name;
-    private boolean isModifiedPage;
+    private boolean isModifiedPage;  //Allow the code to know if it is adding page or editing page
     private FoodItem passedItem;
 
     @Override
@@ -37,35 +37,11 @@ public class AddItemToRecipeActivity extends AppCompatActivity {
         et_quantity = findViewById(R.id.editText_quantity);
         et_name = findViewById(R.id.editText_name);
 
-        isModifiedPage = (getIntent().getExtras() != null);
-        if(isModifiedPage) {
-            String json = getIntent().getExtras().getString("item");
-            Gson gson = new Gson();
-            passedItem = gson.fromJson(json, FoodItem.class);
-            et_name.setText(passedItem.getName());
-            et_quantity.setText(Float.toString(passedItem.getQuantity()));
-
-            ((Button)findViewById(R.id.button_add)).setText("SAVE ITEM");
-            ((Button)findViewById(R.id.button_add)).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    addItemBtn(v);
-                }
-            });
-            ((Button)findViewById(R.id.button_cancel)).setText("DELETE ITEM");
-            ((Button)findViewById(R.id.button_cancel)).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
-        }
-
         updateSpinner();
     }
 
+    //Validate the form, make sure there is no empty text field
     public boolean validateForm() {
-
         if(s_item.getSelectedItem().toString().matches("Select Item") && et_name.getText().toString().equals("")) {
             Toast.makeText(this, "Please Select An Item Or Enter An Item!", LENGTH_SHORT).show();
             s_item.requestFocus();
@@ -82,6 +58,7 @@ public class AddItemToRecipeActivity extends AppCompatActivity {
         }
     }
 
+    //Handle and display the drop down list to display the items
     public void updateSpinner() {
         Vector<String> list = new Vector<String>();
         list.add("Select Item");
@@ -94,6 +71,7 @@ public class AddItemToRecipeActivity extends AppCompatActivity {
         s_item.setAdapter(adapter);
     }
 
+    //Add Item button to add item's information into new recipe page
     public void addItemBtn(View view) {
         if(validateForm()) {
             String selectedItem;

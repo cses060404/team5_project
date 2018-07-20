@@ -26,11 +26,13 @@ import google.zxing.integration.android.IntentResult;
 
 public class MainActivity extends AppCompatActivity{
 
+    //the main database
     public static Controller controller;
     public final String DATA = "Model_File";
     private Barcode barcode;
     private RetrievedData data;
 
+    //Loading the pantry and recipes from local storage
     public void loadData() {
         SharedPreferences prefs = getSharedPreferences(DATA, MODE_PRIVATE);
         String jsonString = prefs.getString("model", "");
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+    //Saving the pantry and recipes to local storage
     public void saveData() {
         SharedPreferences.Editor editor = getSharedPreferences(DATA, MODE_PRIVATE).edit();
         Gson gson = new Gson();
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity{
         editor.apply();
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,24 +63,8 @@ public class MainActivity extends AppCompatActivity{
 
         controller = new Controller(this);
         barcode = new Barcode();
+
         loadData();
-
-        /*
-        This next code is just to temporalily have some recipes to work with we need to d
-        delete this later..
-         */
-
-        /*
-            Recipe newRecipe = new Recipe();
-            newRecipe.addDirection("put the pop-tarts in the toaster");
-            FoodItem newFoodItem = new FoodItem("Pop-Tarts", 2, "na");
-            newRecipe.addFoodItem(newFoodItem);
-            newRecipe.setName("Pop-Tarts");
-            controller.addRecipe(newRecipe);
-            */
-
-
-        //finished temporary recipes
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -84,7 +72,7 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
-
+    //Start the scanner
     public void scanningBtn(View v) {
         //start scanning
         if(v.getId() == R.id.scanBtn){
@@ -93,7 +81,7 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-
+    //Retrieve the result from scanner
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
 
@@ -106,12 +94,9 @@ public class MainActivity extends AppCompatActivity{
             data = new RetrievedData();
             AsyncLoadItem loadItem = new AsyncLoadItem(barcode, this, data);
             loadItem.execute();
-            //item = api.getItem();
-
-            //ItemLoader il = new ItemLoader();
-            //il.execute(barcode);
         }
         else{
+            //display the message
             Toast toast = Toast.makeText(getApplicationContext(),
                     "No scan data received!", Toast.LENGTH_SHORT);
             toast.show();
@@ -143,6 +128,7 @@ public class MainActivity extends AppCompatActivity{
         saveData();
     }
 
+    //Start a new activity to add new recipe
     public void addRecipeBtn(View view) {
         Intent intent = new Intent(this, AddRecipeActivity.class);
         startActivity(intent);
@@ -188,6 +174,7 @@ public class MainActivity extends AppCompatActivity{
         controller.deleteItem(foodItem);
     }
 
+    //The listener to control the bottom navigation with fragment
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 

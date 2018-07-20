@@ -31,7 +31,6 @@ public class RecipeFragment extends Fragment {
     private Vector<Recipe> recipes;
     private ArrayAdapter<Recipe> adapter;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,15 +44,19 @@ public class RecipeFragment extends Fragment {
         return view;
     }
 
+    //update the list view to display the recipes
     public void updateView() {
         recipes = MainActivity.controller.getRecipes();
         adapter = new ArrayAdapter<Recipe>(getContext(), android.R.layout.simple_list_item_1, controller.getRecipes());
         lv_recipe.setAdapter(adapter);
+
+        //set the on click listener to allow the recipes being clickable and display the edit page to edit the recipe
         lv_recipe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), DisplayRecipeActivity.class);
                 Gson gson = new Gson();
+                //Use JSON to pass the object to new activity
                 String json = gson.toJson(recipes.get(position));
                 intent.putExtra("recipe", json);
                 intent.putExtra("position", position);

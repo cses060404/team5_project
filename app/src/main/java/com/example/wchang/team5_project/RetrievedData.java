@@ -3,7 +3,7 @@ package com.example.wchang.team5_project;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-
+//This is the template to retrieve the data from web api database
 public class RetrievedData {
 
         @SerializedName("old_api_id")
