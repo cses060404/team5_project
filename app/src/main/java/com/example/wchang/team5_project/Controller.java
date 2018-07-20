@@ -12,8 +12,6 @@ public class Controller implements Serializable {
     public Controller() {
         model = new Model();
         mainActivity = new Activity();
-        FoodItem foodItem = new FoodItem("butter",1,"cup");
-        addItem(foodItem);
     }
 
     Controller(Activity mainActivity){
@@ -29,6 +27,12 @@ public class Controller implements Serializable {
         return model;
     }
 
+    /**
+    *   This Function compares the string of the passed FoodItem to
+    *   the strings of the FoodItems stored in model.pantry. If a similar
+    *   string is found it adds their quantities. Otherwise it adds it
+    *   as a new FoodItem to model.pantry
+    */
     void addItem(FoodItem newItem){
         // look to see if item is already in the vector
         for(int i = 0; i < model.pantry.size(); i++) {
@@ -41,7 +45,10 @@ public class Controller implements Serializable {
         // else add item to the vector
         model.pantry.add(newItem);
     }
-
+    /**
+    *   Searches model.Pantry for an equivalent name to the passed
+    *   FoodItem. If found it is deleted from model.Pantry .
+    */
     void deleteItem(FoodItem oldItem){
         for(int i = 0; i < model.pantry.size(); i++) {
             // if it is add the quantity values
@@ -56,10 +63,20 @@ public class Controller implements Serializable {
         model.recipes.remove(index);
     }
 
+    /**
+    *   This Function adds a the passed Recipe to model.recipes
+    */
     void addRecipe(Recipe newRecipe){
         model.addRecipe(newRecipe);
     }
 
+    /**
+    *   Takes a Vector<Recipe> as a parameter. It will traverse all
+    *   recipes in this vector and compare their FoodItem's to
+    *   model.pantry . Any similar FoodItems are ignored. Others are
+    *   put into a temporary Vector<FoodItem> that is returned at the
+    *   end of the function.
+    */
     public Vector<FoodItem> makeList(Vector<Recipe> usingRecipe){
         Vector<FoodItem> needed = new Vector<>();
         for(int i = 0; i < usingRecipe.size(); i++){
@@ -80,6 +97,34 @@ public class Controller implements Serializable {
                 }
             }
         }
+        return needed;
+    }
+
+    /**
+    *   Takes a Recipe as a parameter. It will traverse all
+    *   FoodItems in this Recipe. Any similar FoodItems are ignored. Others are
+    *   put into a temporary Vector<FoodItem> that is returned at the
+    *   end of the function.
+    */
+    public Vector<FoodItem> makeList(Recipe usingRecipe){
+        Vector<FoodItem> needed = new Vector<>();
+
+            for(int j = 0; j < usingRecipe.getIngredients().size(); j++) {
+                for(int k = 0; k < model.pantry.size(); k++) {
+                // j is the recipe FoodItem index
+                // k is the pantry FoodItem index
+                // compare all J's to K's. if not found add to needed list
+                    if (model.pantry.get(k).name.equals(usingRecipe.getIngredients().get(j).name) ) {
+                        //create a new FoodItem with the needed quantity
+                        FoodItem newFoodItem = new FoodItem(model.pantry.get(k).name, (usingRecipe.getIngredients().get(j).quantity - model.pantry.get(k).quantity), model.pantry.get(k).unit);
+                        if(newFoodItem.quantity > 0)
+                            needed.add(newFoodItem);
+                    } else {
+                        FoodItem newFoodItem = new FoodItem(usingRecipe.getIngredients().get(j).name, usingRecipe.getIngredients().get(j).quantity, usingRecipe.getIngredients().get(j).unit);
+                        needed.add(newFoodItem);
+                    }
+                }
+            }
         return needed;
     }
 

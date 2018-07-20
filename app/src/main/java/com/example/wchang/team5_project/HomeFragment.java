@@ -37,6 +37,10 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    /**
+    *   Updates the adapter connected to ListView to keep the information in the view up to date.
+    *   Updates the adapters data from controller.getPantry() and item click listener for ListView.
+    */
     public void updateView(){
         adapter = new ArrayAdapter<FoodItem>(getContext(), android.R.layout.simple_list_item_1, controller.getPantry());
         listView.setAdapter(adapter);
@@ -63,6 +67,9 @@ public class HomeFragment extends Fragment {
 
     }
 
+    /**
+    *   saves the name of the "pantry"
+    */
     public void writeSharedPreferences(){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         SharedPreferences.Editor editor = sp.edit();
@@ -70,6 +77,9 @@ public class HomeFragment extends Fragment {
         editor.commit();
     }
 
+    /**
+    *   loads the name of the "pantry"
+    */
     public void readSharedPreferences(){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String name = sp.getString(SP_USER_STATUS, "");
