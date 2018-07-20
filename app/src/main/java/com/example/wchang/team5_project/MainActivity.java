@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
-    // Refresh or update data
+    // Refresh or update data; calls the addItem method
     public void updateData(View view) {
         EditText foodName = (EditText) findViewById(R.id.name);
         EditText quantity = (EditText) findViewById(R.id.quantity);
