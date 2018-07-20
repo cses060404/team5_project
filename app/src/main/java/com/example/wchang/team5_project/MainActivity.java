@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity{
         if(current != null) current.clearFocus();
     }
 
-    //Deletes food items
+    //Calls the deleteItem method
     public void deleteData(View view) {
         //It is unclear how the data will be handled here
         EditText foodName = (EditText) findViewById(R.id.name);
@@ -215,12 +215,4 @@ public class MainActivity extends AppCompatActivity{
             return true;
         }
     };
-
-    /*
-    public void asyncTestingBtn(View view) {
-        data = new RetrievedData();
-        AsyncLoadItem a = new AsyncLoadItem(barcode, this, data);
-        a.execute();
-    }
-    */
 }
