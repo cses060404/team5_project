@@ -3,7 +3,8 @@ package com.example.wchang.team5_project;
 import java.util.Vector;
 
 /**
- * For this app's MVC design, this class deals with the data in the app.
+ *   Model Class used to maintain the data of the app. It keeps a FoodItem vector to represent
+ *   your pantry and a Recipe vector. This data is modified through Controller.
  */
 public class Model {
     Vector<FoodItem> pantry;

@@ -13,6 +13,10 @@ public class Controller implements Serializable {
     Model model;
     Activity mainActivity;
 
+    /**
+     *   Controller class owns a Model and an Activity class representing the view.
+     *   Coordinates communication between the two.
+     */
     public Controller() {
         model = new Model();
         mainActivity = new Activity();

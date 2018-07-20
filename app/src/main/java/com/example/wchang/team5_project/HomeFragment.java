@@ -18,7 +18,8 @@ import android.content.Intent;
 import static com.example.wchang.team5_project.MainActivity.controller;
 
 /**
- * Helps in the implementation for the home page for the app.
+ *   Home Fragment List's is the default fragment opened by MainActivity. It lists the FoodItems
+ *   in model.pantry. Onclick listeners allow you to modify or delete these food item.
  */
 public class HomeFragment extends Fragment {
     private EditText editName;

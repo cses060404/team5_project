@@ -7,7 +7,8 @@ import java.util.Vector;
 import java.util.stream.Stream;
 
 /**
- * This encapsulates the notion of a recipe.
+ *   Recipe Class used to hold a vector of FoodItems representing ingredients and a vector
+ *   of strings to represent instructions.
  */
 public class Recipe {
     Vector<FoodItem> ingredients;

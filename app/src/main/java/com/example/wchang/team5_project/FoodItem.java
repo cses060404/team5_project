@@ -1,7 +1,7 @@
 package com.example.wchang.team5_project;
 
 /**
- * Creates the data value for a food item.
+ *   Food Item Class used to store the name, quantity, and unit of measurement for and item.
  */
 public class FoodItem {
     String name;

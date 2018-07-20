@@ -8,13 +8,15 @@ import android.widget.Toast;
 import android.widget.TextView;
 
 /**
- * Displays the items added onto the recipe
+ *   Display Item Activity is opened when the onClick event listener is called from HomeFragment.
+ *   It displays the chosen FoodItem and allows you to modify its name or delete it.
  */
 public class DisplayItemActivity extends AppCompatActivity {
 
     private FoodItem oldFoodItem;
     private TextView item_name;
     int index;
+    private Boolean isItemDeleted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,7 @@ public class DisplayItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_item);
         item_name = findViewById(R.id.itemName);
         index = getIntent().getExtras().getInt("position");
+        isItemDeleted = false;
 
         updateView();
     }
@@ -39,12 +42,14 @@ public class DisplayItemActivity extends AppCompatActivity {
 
     public void deleteBtn(View view) {
         MainActivity.controller.deleteItem(oldFoodItem);
+        isItemDeleted = true;
         Toast.makeText(this, "Item Deleted!", Toast.LENGTH_LONG).show();
         finish();
     }
 
     public void onPause(){
         super.onPause();
-        MainActivity.controller.getPantry().get(index).name = item_name.getText().toString().toUpperCase();
+        if(!isItemDeleted)
+            MainActivity.controller.getPantry().get(index).name = item_name.getText().toString().toUpperCase();
     }
 }
